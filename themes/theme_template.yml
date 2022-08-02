@@ -1,0 +1,27 @@
+# This is a template for making themes for rAdwManager. 
+
+themename: # Set theme name here
+    main:  # All themes have a main varient
+        light:  # Applies only to the light theme
+            # Contains named Libadwaita colors: https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/named-colors.html
+            accent_color: "@green_3",  # Theme accent colors can come in the form of a named palette color (@blue_1), or any other css color including hex and rgba codes.            
+            window_bg_color: "#fafafa"
+        dark: # Applies only to the dark theme
+            accent_color: "@green_1",
+            window_bg_color: "rgba(0, 0, 0, 0.8)"
+        global: # Applies to both light and dark
+            accent_fg_color: "#ffffff"
+            # You can use the custom CSS property to apply custom css settings if you need to do that for any reason.
+            custom_css: |
+                windowcontrols.end {
+                  margin-right: 8px;
+                }
+                
+                windowcontrols.start {
+                  margin-left: 8px;
+                }
+    red_varient: # You can create different varients of a theme that patch themselves on top of the main varient
+        light:
+            accent_color: "@red_3"
+        dark:
+            accent_color: "@red_1"
