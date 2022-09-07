@@ -1,0 +1,28 @@
+rthemelib
+[X] Theme variant generation
+[X] Variant subvariant generation
+[X] Subvariant CSS generation
+[X] Plugin Systems
+[X] Gtk3 and Gtk4 plugins
+
+rthemed
+[] Integration with rthemelib
+[] Theme generation on demand
+[] Theme generation on dark/light switch
+[] Theme generation on gtk refresh
+[] Theme generation on login
+[] High Contrast theme support
+[] Theme gsetting integration
+[] Theme debug tool
+
+rthemegtk
+[] Integration with rthemelib
+[] Double click theme file to install it
+[] Select different themes, and variants
+[] Theme preview with light-dark switch
+
+risi-tweaks
+[] Integration with rthemelib
+[] Double click theme file to install it
+[] Select different themes, and variants
+[] Theme preview with light-dark switch

@@ -1,5 +1,5 @@
 # A list of colors named colors that can be used in a theme.
-UI_COLORS = [
+THEME_PROPERTIES = [
     "accent_bg_color",
     "accent_fg_color",
     "accent_color",
@@ -30,7 +30,8 @@ UI_COLORS = [
     "popover_bg_color",
     "popover_fg_color",
     "shade_color",
-    "scrollbar_outline_color"
+    "scrollbar_outline_color",
+    "custom_css"
 ]
 
 # A dictionary of GNOME Palette colors converted to Hex values.
@@ -119,3 +120,18 @@ DEFAULT_COLORS = {
     "shade_color": ("rgba(0, 0, 0, 0.07)", "rgba(0, 0, 0, 0.36)"),
     "scrollbar_outline_color": ("#ffffff", "rgba(0, 0, 0, 0.5)")
 }
+
+SUB_VARIANTS = [
+    "global",
+    "light",
+    "dark",
+    "global-hc",
+    "light-hc",
+    "dark-hc"
+]
+
+FLAGS = [
+    "light",
+    "dark",
+    "hc"
+]
