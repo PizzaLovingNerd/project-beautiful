@@ -8,10 +8,8 @@ main:  # All themes have a main varient
     light:  # Applies only to the light theme
         # Contains named Libadwaita colors: https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/named-colors.html
         accent_color: "@green_3"  # Theme accent colors can come in the form of a named palette color (@blue_1), or any other css color including hex and rgba codes.
-        window_bg_color: "#fafafa"
     dark: # Applies only to the dark theme
         accent_color: "@green_1"
-        window_bg_color: "rgba(0, 0, 0, 0.9)"
     global: # Applies to both light and dark
         accent_color: "@yellow_1"
         accent_fg_color: "#ffffff"

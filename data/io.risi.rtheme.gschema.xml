@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema path="/io/risi/rtheme/" id="io.risi.rtheme">
+    <key type="s" name="rthemed-theme">
+      <default>"risi"</default>
+      <summary>rtheme name</summary>
+      <description>
+        The basename of the default theme applied by rtheme.
+      </description>
+    </key>
+    <key type="s" name="rthemed-variant">
+      <default>"main"</default>
+      <summary>rtheme variant</summary>
+      <description>
+        The name of the variant applied by rtheme.
+      </description>
+    </key>
+    <key type="b" name="rthemed-enabled">
+      <default>true</default>
+      <summary>rthemed enabled</summary>
+      <description>
+        Wehther or not to enable rthemed.
+        (rthemed is the daemon that makes changes to the theme on the fly)
+      </description>
+    </key>
+  </schema>
+</schemalist>

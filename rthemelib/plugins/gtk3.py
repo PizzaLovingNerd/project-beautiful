@@ -7,10 +7,10 @@ CSS_FILE_ = f"{HOME_}/.config/gtk-3.0/gtk.css"
 
 
 class Plugin(pm.Plugin):
-    def __init__(self):
+    def __init__(self, plugin_manager: pm.PluginManager):
         super().__init__(
             "gtk3", "A plugin for GTK3 themes. Requires adw-gtk3",
-            "0.1", "PizzaLovingNerd"
+            "0.1", "PizzaLovingNerd", plugin_manager
         )
 
     def on_load(self):  # Runs when the plugin is loaded

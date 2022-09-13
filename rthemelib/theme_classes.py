@@ -40,11 +40,11 @@ class Variant:
                 dark = Subvariant("dark", subvariants_dict["dark"])
                 self.add_subvariant(dark)
         if "light-hc" in subvariants:
-            light_hc = Subvariant("light-hc", light.properties)
+            light_hc = Subvariant("light-hc", subvariants_dict["light"].properties)
             light_hc.properties.update(subvariants_dict["light-hc"])
             self.add_subvariant(light_hc)
         if "dark-hc" in subvariants:
-            dark_hc = Subvariant("dark-hc", dark.properties)
+            dark_hc = Subvariant("dark-hc", subvariants_dict["dark"].properties)
             dark_hc.properties.update(subvariants_dict["dark-hc"])
             self.add_subvariant(dark_hc)
 
@@ -52,7 +52,7 @@ class Variant:
         subvariant.parent_variant = self
         self.subvariants.append(subvariant)
 
-    def get_subvariant_from_name(self, subvariant_name: str) -> Subvariant:
+    def get_subvariant_from_name(self, subvariant_name: str) -> Subvariant or None:
         for subvariant in self.subvariants:
             if subvariant.name == subvariant_name:
                 return subvariant
@@ -91,14 +91,14 @@ class Theme:
             variant.create_subvariants(data)
             self.variants.append(variant)
 
-    def get_variant_from_name(self, variant: str) -> Variant:
+    def get_variant_from_name(self, variant: str) -> Variant or None:
         """Returns the variant with the specified name."""
         for v in self.variants:
             if v.name == variant:
                 return v
         return None
 
-    def get_subvariant_from_name(self, variant: str, subvariant: str) -> Subvariant:
+    def get_subvariant_from_name(self, variant: str, subvariant: str) -> Subvariant or None:
         """Convenience function to get a subvariant from a variant."""
         variant = self.get_variant_from_name(variant)
         if variant is not None:

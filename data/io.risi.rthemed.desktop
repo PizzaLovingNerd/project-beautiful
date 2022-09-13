@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=rThemeD
+Comment=Daemon for on the fly theme switching
+Exec=systemctl --user start rthemed
+Icon=io.risi.rthemed
+Terminal=false
+Type=Application
+Categories=Utility;System;
+StartupNotify=false
+DBusActivatable=true
+X-GNOME-UsesNotifications=true
