@@ -1,12 +1,14 @@
 import rthemed
+from rthemed.dbus import DaemonBus
 import rthemelib
 from gi.repository import Gio
 from gi.repository import GLib
+from pydbus import SessionBus
 
 gnome_interface = Gio.Settings.new("org.gnome.desktop.interface")
 gnome_a11y = Gio.Settings.new("org.gnome.desktop.a11y.interface")
 rtheme_settings = Gio.Settings.new("io.risi.rtheme")
-
+session_bus = SessionBus()
 
 class Daemon:
     def __init__(self):
@@ -25,6 +27,7 @@ class DaemonApplication(Gio.Application):
         super().__init__(application_id="io.risi.rthemed",
                          flags=Gio.ApplicationFlags.IS_SERVICE)
         self.daemon = daemon
+        session_bus.publish("io.risi.rthemed", DaemonBus())
 
         try:
             self.register()
