@@ -1,47 +1,50 @@
 from pydbus.generic import signal
+from rthemed.daemon import Daemon
+
 
 class DaemonBus(object):
     """
         <node>
             <interface name='io.risi.rthemed'>
-                <method name='EnableDaemon' />
-                <method name='DisableDaemon' />
-                <method name='ReloadDaemon' />
-                <method name='StartDaemon' />
-                <method name='StopDaemon' />
-                <method name='ViewDaemonLogs'>
+                <method name='Enable' />
+                <method name='Disable' />
+                <method name='Reload' />
+                <method name='Start' />
+                <method name='Stop' />
+                <method name='ViewLogs'>
                     <arg type='s' name='logs' direction='out' />
                 </method>
-                <property name="DaemonStatus" type="s" access="read">
+                <property name="Status" type="s" access="read">
                     <annotation name="org.freedesktop.DBus.Property.EmitsChangedSignal" value="true"/>
                 </property>
             </interface>
         </node>
     """
 
-    def EnableDaemon(self):
+    def Enable(self):
         return
 
-    def DisableDaemon(self):
+    def Disable(self):
         return
 
-    def ReloadDaemon(self):
+    def Reload(self):
         return
 
-    def StartDaemon(self):
+    def Start(self):
         return
 
-    def StopDaemon(self):
+    def Stop(self):
         return
 
-    def ViewDaemonLogs(self):
+    def ViewLogs(self):
         return self._daemonStatus
 
-    def __init__(self):
+    def __init__(self, daemon: Daemon):
         self._daemonStatus = "value"
+        Daemon.send_notification(self, "changed_theme", "text")
 
     @property
-    def DaemonStatus(self):
+    def Status(self):
         return self._daemonStatus
 
     PropertiesChanged = signal()
