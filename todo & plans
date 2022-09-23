@@ -27,6 +27,7 @@ rthemed
 [] High Contrast theme support
 [X] Theme gsetting integration
 [] Theme debug tool
+[] spec file
 
 rthemed help:               Show this help prompt.
 
