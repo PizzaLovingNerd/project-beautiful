@@ -10,7 +10,6 @@ PLUGIN_DIR = "/home/cameron/PycharmProjects/project-beautiful/rthemelib/plugins"
 class PluginManager:
     def __init__(self):
         self.plugins = []
-        self.logger = None
         self.load_plugins()
 
     def load_plugins(self):

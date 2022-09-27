@@ -1,15 +1,17 @@
 import os
 import yaml
 
+from gi.repository import GLib
+
 import rthemelib.theme_classes as tc
 import rthemelib.plugin_manager as pm
 import rthemelib.constants as constants
 
 HOME_ = os.path.expanduser('~')
-THEME_DIRS_ = [f"{HOME_}/.rthemes", f"{HOME_}/local/share/rthemes", "/usr/share/rthemes/"]
-
+THEME_DIRS_ = [GLib.get_user_data_dir() + "/rthemes", GLib.get_home_dir() + "/.rthemes"] + [
+    (x + "/rthemes").replace("//", "/") for x in GLib.get_system_data_dirs()
+]
 plugin_manager = pm.PluginManager()
-logger = None
 
 
 def check_yaml(theme_file: str) -> tuple[bool, str]:
@@ -62,7 +64,7 @@ def check_yaml(theme_file: str) -> tuple[bool, str]:
 
     # Check Subvariants
     for variant in variants:
-        for subvariant in variant.subvariants:
+        for subvariant in theme_data[variant]:
             if subvariant not in constants.SUB_VARIANTS:
                 return False, f"Invalid subvariant: {subvariant}"
             for theme_property in theme_data[variant][subvariant]:
@@ -82,5 +84,15 @@ def get_theme_list() -> list[str]:
     for theme_dir in THEME_DIRS_:
         if os.path.isdir(theme_dir):
             for theme in os.listdir(theme_dir):
-                themes.append(theme[:-4])
+                if check_yaml(f"{theme_dir}/{theme}")[0]:
+                    themes.append(theme[:-4])
     return themes
+
+
+def get_file_from_name(name) -> str:
+    for theme_dir in THEME_DIRS_:
+        if os.path.isdir(theme_dir):
+            for theme in os.listdir(theme_dir):
+                if theme == f"{name}.rtheme" and check_yaml(f"{theme_dir}/{theme}")[0]:
+                    return f"{theme_dir}/{theme}"
+    return None

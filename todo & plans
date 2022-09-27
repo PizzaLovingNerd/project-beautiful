@@ -33,20 +33,18 @@ rthemed help:               Show this help prompt.
 
 DAEMON COMMANDS:
     rthemed status:         Show the current status of rthemed.
-    rthemed enable:         Enable rthemed
-    rthemed disable:        Disable rthemed
     rthemed reload:         Reload rthemed
     rthemed start:          Start rthemed
     rthemed stop:           Stop rthemed
-    rthemed view-log:       View the full log
+    rthemed logs:           Show rthemed logs
 
 THEME COMMANDS:
-    rthemed list-themes:    List all themes
-    rthemed list-variants:  List current theme variants
-    rthemed get-theme:      Get the current theme
-    rthemed get-variant:    Get the current variant
-    rthemed get-theme-path: Get the path to the current theme
-    rthemed refresh:        Refresh the theme list
+    rthemed list-themes:            List all themes
+    rthemed list-variants <theme>:  List current theme variants
+    rthemed get-theme:              Get the current theme
+    rthemed get-variant:            Get the current variant
+    rthemed get-theme-path:         Get the path to the current theme
+    rthemed refresh:                Refresh the theme list
 
 Use gsettings to modify the theme settings:
     gsettings set io.risi.rtheme theme-name "rthemed_theme"
