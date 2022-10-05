@@ -3,7 +3,6 @@ import rthemelib
 from gi.repository import Gio
 from gi.repository import GLib
 from pydbus import SessionBus
-# from pydbus.generic import signal
 
 gnome_interface = Gio.Settings.new("org.gnome.desktop.interface")
 gnome_a11y = Gio.Settings.new("org.gnome.desktop.a11y.interface")
