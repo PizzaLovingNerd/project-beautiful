@@ -6,7 +6,6 @@ import signal
 import locale
 import gettext
 
-VERSION = '@VERSION@'
 pkgdatadir = '@pkgdatadir@'
 
 sys.path.insert(1, pkgdatadir)
