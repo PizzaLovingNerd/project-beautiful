@@ -81,7 +81,7 @@ class DaemonBus(object):
                     <arg type='as' name='logs' direction='out' />
                 </method>
                 <method name='Status'>
-                    <arg type='(b, as)' name='logs' direction='out' />
+                    <arg type='(bas)' name='logs' direction='out' />
                 </method>
             </interface>
         </node>
