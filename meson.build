@@ -12,6 +12,7 @@ py = python.find_installation('python3', required: true, modules: [
 ])
 
 subdir('data')
+subdir('themes')
 subdir('rthemelib')
 subdir('rthemed')
 
