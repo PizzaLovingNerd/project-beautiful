@@ -9,3 +9,4 @@ Categories=Utility;System;
 StartupNotify=false
 DBusActivatable=true
 X-GNOME-UsesNotifications=true
+NoDisplay=true

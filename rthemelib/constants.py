@@ -147,7 +147,7 @@ DAEMON COMMANDS:
     rthemed status:             Show the current status of rthemed.
     rthemed start:              Start rthemed
     rthemed stop:               Stop rthemed
-    rthemed view-log:           View the full log
+    rthemed view-logs:           View the full log
 
 THEME COMMANDS:
     rthemelib list-themes:      List all themes

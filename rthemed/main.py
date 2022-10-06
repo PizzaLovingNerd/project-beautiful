@@ -13,18 +13,15 @@ except GLib.Error:
 
 rtheme_settings = Gio.Settings.new("io.risi.rtheme")
 
-
-if __name__ == "__main__":
-    if len(sys.argv) < 2:
+def check_arguments(arg):
+    if not len(sys.argv) - 1 == arg:
         print(rthemelib.constants.HELP_PROMPT)
         exit(1)
 
-
-    def check_arguments(arg):
-        if not len(sys.argv) - 1 == arg:
-            print(rthemelib.constants.HELP_PROMPT)
-            exit(1)
-
+def main():
+    if len(sys.argv) < 2:
+        print(rthemelib.constants.HELP_PROMPT)
+        exit(1)
 
     match sys.argv[1]:
         case "status":

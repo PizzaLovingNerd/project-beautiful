@@ -1,0 +1,16 @@
+#!@PYTHON@
+
+import os
+import sys
+import signal
+import locale
+import gettext
+
+pkgdatadir = '@pkgdatadir@'
+
+sys.path.insert(1, pkgdatadir)
+signal.signal(signal.SIGINT, signal.SIG_DFL)
+
+if __name__ == '__main__':
+   from rthemed import main
+   sys.exit(main.main())
