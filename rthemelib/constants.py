@@ -152,7 +152,6 @@ DAEMON COMMANDS:
 THEME COMMANDS:
     rthemelib list-themes:      List all themes
     rthemelib list-variants:    List current theme variants
-    rthemelib get-variant:      Get the current variant
     rthemelib get-theme-path:   Get the path to the current theme
 
 Use gsettings to modify the theme settings:

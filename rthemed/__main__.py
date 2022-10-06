@@ -29,8 +29,12 @@ if __name__ == "__main__":
     match sys.argv[1]:
         case "status":
             check_arguments(1)
+            is_running = ""
+            print(daemonbus.Status())
+            if not daemonbus.Status()[0]:
+                is_running = "not"
 
-            print(f"rthemed is currently{' not ' if not daemonbus.Status()[0] else ' '}running.")
+            print(f"rthemed is currently {is_running} running.")
             print(daemonbus.Status()[1])
 
         case "reload":

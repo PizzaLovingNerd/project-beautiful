@@ -43,6 +43,7 @@ class DaemonApplication(Gio.Application):
             self.register()
             self.set_default()
             print("rthemed started.")
+            self.daemon.logger.log("rthemed started.")
             GLib.MainLoop().run()
 
         except GLib.Error as e:
