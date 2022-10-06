@@ -1,8 +1,10 @@
 pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'))
-moduledir = join_paths(pkgdatadir, 'rtheme', 'themes')
+moduledir = join_paths(pkgdatadir, 'rthemes')
 
 themes = [
-  'nord.yml'
+  'adwaita.yml',
+  'nord.yml',
+  'risi.yml'
 ]
 
 install_data(themes, install_dir: moduledir)
