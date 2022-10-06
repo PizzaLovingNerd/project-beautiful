@@ -16,6 +16,7 @@ configure_file(
 
 sources = [
   '__init__.py',
+  '__main__.py',
   'main.py',
   'daemon.py',
 ]
