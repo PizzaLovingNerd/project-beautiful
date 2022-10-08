@@ -10,7 +10,6 @@ class Subvariant:
         self.properties = properties
         self.parent_variant = None
 
-
 class Variant:
     """A class to represent a theme variant."""
     def __init__(self, name: str):
@@ -23,28 +22,28 @@ class Variant:
         self.subvariants = []
         subvariants = subvariants_dict.keys()
         if "global" in subvariants:
-            self.add_subvariant(Subvariant("global", subvariants_dict["global"]))
+            self.add_subvariant(Subvariant("global", subvariants_dict["global"].copy()))
             if "light" in subvariants:
-                light = Subvariant("light", subvariants_dict["global"])
-                light.properties.update(subvariants_dict["light"])
+                light = Subvariant("light", subvariants_dict["global"].copy())
+                light.properties.update(subvariants_dict["light"].copy())
                 self.add_subvariant(light)
             if "dark" in subvariants:
-                dark = Subvariant("dark", subvariants_dict["global"])
-                dark.properties.update(subvariants_dict["dark"])
+                dark = Subvariant("dark", subvariants_dict["global"].copy())
+                dark.properties.update(subvariants_dict["dark"].copy())
                 self.add_subvariant(dark)
         else:
             if "light" in subvariants:
-                light = Subvariant("light", subvariants_dict["light"])
+                light = Subvariant("light", subvariants_dict["light"].copy())
                 self.add_subvariant(light)
             if "dark" in subvariants:
-                dark = Subvariant("dark", subvariants_dict["dark"])
+                dark = Subvariant("dark", subvariants_dict["dark"].copy())
                 self.add_subvariant(dark)
         if "light-hc" in subvariants:
-            light_hc = Subvariant("light-hc", subvariants_dict["light"].properties)
+            light_hc = Subvariant("light-hc", subvariants_dict["light"].copy())
             light_hc.properties.update(subvariants_dict["light-hc"])
             self.add_subvariant(light_hc)
         if "dark-hc" in subvariants:
-            dark_hc = Subvariant("dark-hc", subvariants_dict["dark"].properties)
+            dark_hc = Subvariant("dark-hc", subvariants_dict["dark"].copy())
             dark_hc.properties.update(subvariants_dict["dark-hc"])
             self.add_subvariant(dark_hc)
 
@@ -62,7 +61,6 @@ class Variant:
 class Theme:
     """A class to represent a theme."""
     def __init__(self):
-        self.name = ""  # Name of the theme.
         self.variants = []  # List of variants of the theme.
         self.invalid = False  # Whether the theme is invalid. Used for displaying if there is an error.
         self.error = ""  # Error message if the theme is invalid.
@@ -80,15 +78,26 @@ class Theme:
 
         self.theme_flags = self.theme_data["flags"]
         variants = list(self.theme_data.keys())
+
         if "flags" in variants:  # Make sure that "flags" doesn't get detected as a variant
             variants.remove("flags")
-        for v in variants:
+
+        # Applying main variant on top of other variants
+        # I despise this code, but it works. If you have a better way to do this, please create a pull request.
+        for variant in variants:
+            if variant == "main":
+                continue
+            for main_subvariant in self.theme_data["main"].keys():
+                for subvariant in self.theme_data[variant].keys():
+                    if main_subvariant == subvariant:
+                        applied_data = self.theme_data["main"][subvariant].copy()
+                        applied_data.update(self.theme_data[variant][subvariant])
+                        self.theme_data[variant][subvariant] = applied_data
+
+        for v in variants: # Generate variants
             variant = Variant(v)
             variant.theme = self
-            data = copy.deepcopy(self.theme_data["main"])
-            if v != "main":
-                data.update(self.theme_data[v])
-            variant.create_subvariants(data)
+            variant.create_subvariants(self.theme_data[v])
             self.variants.append(variant)
 
     def get_variant_from_name(self, variant: str) -> Variant or None:

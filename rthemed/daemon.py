@@ -41,7 +41,6 @@ class DaemonApplication(Gio.Application):
         try:
             self.register()
             self.set_default()
-            print("rthemed started.")
             self.daemon.logger.log("rthemed started.")
             GLib.MainLoop().run()
 
@@ -50,11 +49,11 @@ class DaemonApplication(Gio.Application):
             self.daemon.logger.log("rThemeD may already be running")
 
     def stop(self):
+        self.daemon.logger.log("stopping rthemed.")
         GLib.MainLoop().quit()
         self.quit()
 
     def send_notification(self, notification_id, text, *args, **kwargs):
-        print(self.get_is_registered())
         notification = Gio.Notification.new("rthemed")
         notification.set_title("rTheme")
         notification.set_priority(Gio.NotificationPriority.URGENT)
@@ -69,6 +68,7 @@ class DaemonApplication(Gio.Application):
                 "A theme change was detected. The theme has been refreshed.\n\n"
                 "Some (or all) of your applications may need to be restarted for the changes to take effect."
             )
+            self.daemon.logger.log(f"Theme refreshed to {rtheme_settings.get_string('theme-name')}")
 
 
 class DaemonBus(object):
@@ -92,14 +92,13 @@ class DaemonBus(object):
         self._daemon_running = False
 
     def Start(self):
-        self.daemon.application.start()
         self._daemon_running = True
-        print("rthemed started successfully.")
+        self.daemon.application.start()
 
     def Stop(self):
         self.daemon.application.stop()
         self._daemon_running = False
-        print("rthemed stopped.")
+        self.daemon.logger.log("rthemed stopped.")
 
     def ViewLogs(self):
         return self.daemon.logger.get_logs()

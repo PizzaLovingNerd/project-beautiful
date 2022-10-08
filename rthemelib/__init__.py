@@ -1,17 +1,18 @@
 import os
 import yaml
 
-from gi.repository import GLib
+from gi.repository import GLib, Gio
 
 import rthemelib.theme_classes as tc
 import rthemelib.plugin_manager as pm
 import rthemelib.constants as constants
 
 HOME_ = os.path.expanduser('~')
-THEME_DIRS_ = [GLib.get_user_data_dir() + "/rthemes", GLib.get_home_dir() + "/.rthemes"] + [
-    (x + "/rthemes").replace("//", "/") for x in GLib.get_system_data_dirs()
-]
+THEME_DIRS_ = [(x + "/rthemes").replace("//", "/") for x in GLib.get_system_data_dirs()] + \
+    [GLib.get_user_data_dir() + "/rthemes", GLib.get_home_dir() + "/.rthemes"]
+
 plugin_manager = pm.PluginManager()
+rtheme_settings = Gio.Settings.new("io.risi.rtheme")
 
 
 def check_yaml(theme_file: str) -> tuple[bool, str]:
@@ -93,6 +94,22 @@ def get_file_from_name(name) -> str:
     for theme_dir in THEME_DIRS_:
         if os.path.isdir(theme_dir):
             for theme in os.listdir(theme_dir):
-                if theme == f"{name}.rtheme" and check_yaml(f"{theme_dir}/{theme}")[0]:
+                if theme == f"{name}.rtheme" or theme == f"{name}.yaml" \
+                        or theme == f"{name}.yml" \
+                        and check_yaml(f"{theme_dir}/{theme}")[0]:
                     return f"{theme_dir}/{theme}"
     return None
+
+
+def get_current_theme() -> tc.Theme:
+    theme = tc.Theme()
+    theme.parse_yaml(get_file_from_name(
+        rtheme_settings.get_string("theme-name")
+    ))
+    return theme
+
+
+def get_current_theme_path() -> str:
+    return get_file_from_name(
+        rtheme_settings.get_string("theme-name")
+    )

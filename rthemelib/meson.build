@@ -4,7 +4,6 @@ sources = [
   'constants.py',
   'plugin_manager.py',
   'setup.py',
-  'test.py',
   'theme_classes.py',
 ]
 

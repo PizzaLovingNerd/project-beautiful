@@ -18,7 +18,14 @@ if __name__ == "__main__":
 
     match sys.argv[1]:
         case "list-themes":
-            print(" ".join(rthemelib.list_themes()))
+            themes = rthemelib.get_theme_list()
+            if len(themes) != 0:
+                print(" ".join(themes))
+            else:
+                raise Exception(
+                    "No themes found. Please install a theme in the following directories: "
+                    + " ".join(rthemelib.THEME_DIRS_)
+                )
         case "list-variants":
             theme = rthemelib.theme_classes.Theme()
             theme.parse_yaml(rthemelib.get_file_from_name(
@@ -30,10 +37,6 @@ if __name__ == "__main__":
                 variants.append(variant.name)
             print(' '.join(variants))
         case "get-theme-path":
-            print(
-                rthemelib.get_file_from_name(
-                    rtheme_settings.get_string("theme-name")
-                )
-            )
+            print(rthemelib.get_current_theme_path())
         case default:
             print(rthemelib.constants.HELP_PROMPT)

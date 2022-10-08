@@ -50,5 +50,9 @@ def apply_theme():
     rthemelib.get_file_from_name(
         rtheme_settings.get_string("theme-name")
     )
-    rthemelib.apply_theme(get_theme(), "main", get_subvariant())
+    rthemelib.apply_theme(
+        get_theme(),
+        rtheme_settings.get_string("variant-name"),
+        get_subvariant()
+    )
 
