@@ -13,6 +13,7 @@ BuildRequires:  python3-gobject
 BuildRequires:  python3-pydbus
 BuildRequires:  meson
 BuildRequires:  desktop-file-utils
+BuildRequires:  systemd-rpm-macros
 
 %description
 Easily Modify and create themes with a .yml file and some plugins.
@@ -26,6 +27,7 @@ rtheme library used for cli and python3
 
 %package d
 Summary:        rtheme daemon
+Requires:       systemd
 Requires:       python3.10
 Requires:       python3.10-gobject
 Requires:       rtheme-lib
@@ -53,9 +55,11 @@ Requires:       rtheme-lib
 %prep
 %autosetup -n rtheme-main
 %build
-meson build --prefix=/usr
+meson build --prefix=%{_exec_prefix}
 
 %install
+mkdir -p %{_sysconfdir}/systemd/user/
+cp -a rthemed/systemd/rthemed.service %{_sysconfdir}/systemd/user/rthemed.service
 %meson_install -C build
 
 %files lib
@@ -63,10 +67,17 @@ meson build --prefix=/usr
 %{_datadir}/rthemes
 %{_datadir}/glib-2.0/schemas/io.risi.rtheme.gschema.xml
 
+%post d
+%systemd_user_post rthemed.service
+
+%preun d
+%systemd_user_preun rthemed.service
+
 %files d
 %{_datadir}/rthemed
 %{_datadir}/applications/io.risi.rthemed.desktop
 %{_bindir}/rthemed
+%{_sysconfdir}/systemd/user/rthemed.service
 
 %files plugin-gtk3
 %{python3_sitelib}/rthemelib/plugins/gtk3.py

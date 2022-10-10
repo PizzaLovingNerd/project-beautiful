@@ -21,6 +21,6 @@ sources = [
   'daemon.py',
 ]
 
-subdir("systemd")
+# subdir("systemd")
 
 install_data(sources, install_dir: moduledir)
