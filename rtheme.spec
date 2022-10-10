@@ -8,6 +8,8 @@ URL:            https://github.com/risiIndustries/rtheme
 Source0:        https://github.com/risiIndustries/rtheme/archive/refs/heads/main.tar.gz
 
 BuildArch:      noarch
+BuildRequires:  python3-devel
+BuildRequires:  meson
 
 %description
 Easily Modify and create themes with a .yml file and some plugins.
