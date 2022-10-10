@@ -1,0 +1,11 @@
+[Unit]
+Description=A daemon that automatically applies the correct theme when certain settings are changed.
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/rthemed start
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target
