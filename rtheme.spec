@@ -1,6 +1,6 @@
 Name:           rtheme
 Version:        0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        rtheme is a theme manager for the Linux desktop
 
 License:        GPL v3
@@ -58,8 +58,10 @@ Requires:       rtheme-lib
 meson build --prefix=%{_exec_prefix}
 
 %install
-mkdir -p %{_sysconfdir}/systemd/user/
-cp -a rthemed/systemd/rthemed.service %{_sysconfdir}/systemd/user/rthemed.service
+mkdir -p %{_userunitdir}
+mkdir -p %{_userpresetdir}
+cp -a rthemed/systemd/rthemed.service %{_userunitdir}/rthemed.service
+cp -a rthemed/systemd/95-rthemed.preset %{_userpresetdir}/95-rthemed.preset
 %meson_install -C build
 
 %files lib
@@ -77,7 +79,8 @@ cp -a rthemed/systemd/rthemed.service %{_sysconfdir}/systemd/user/rthemed.servic
 %{_datadir}/rthemed
 %{_datadir}/applications/io.risi.rthemed.desktop
 %{_bindir}/rthemed
-%{_sysconfdir}/systemd/user/rthemed.service
+%{_userunitdir}/rthemed.service
+%{_userpresetdir}/95-rthemed.preset
 
 %files plugin-gtk3
 %{python3_sitelib}/rthemelib/plugins/gtk3.py
