@@ -12,6 +12,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-gobject
 BuildRequires:  python3-pydbus
 BuildRequires:  meson
+BuildRequires:  desktop-file-utils
 
 %description
 Easily Modify and create themes with a .yml file and some plugins.
