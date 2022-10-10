@@ -4,8 +4,8 @@ Release:        1%{?dist}
 Summary:        rtheme is a theme manager for the Linux desktop
 
 License:        GPL v3
-URL:            https://github.com/risiOS/rtheme
-Source0:        https://github.com/risiOS/rtheme/archive/refs/heads/main.tar.xz
+URL:            https://github.com/risiIndustries/rtheme
+Source0:        https://github.com/risiIndustries/rtheme/archive/refs/heads/main.tar.xz
 
 BuildArch:      noarch
 
