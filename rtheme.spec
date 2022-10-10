@@ -9,42 +9,39 @@ Source0:        https://github.com/risiOS/rtheme/archive/refs/heads/main.tar.gz
 
 BuildArch:	noarch
 
-BuildRequires:  python3-devel
-Requires: 		python3
-
 %description
 Easily Modify and create themes with a .yml file and some plugins.
 
 %package lib
 Summary:        rtheme library
-Depends:        python3.10
-Depends:        python3.10-gobject
+Requires:       python3.10
+Requires:       python3.10-gobject
 %description lib
 rtheme library used for cli and python3
 
 %package d
 Summary:        rtheme daemon
-Depends:        python3.10
-Depends:        python3.10-gobject
-Depends:        rtheme-lib
+Requires:       python3.10
+Requires:       python3.10-gobject
+Requires:       rtheme-lib
 %description d
 Runs rtheme in the background and updates the theme when needed
 
 %package plugin-gtk3
 Summary:        rtheme gtk3 plugin
-Depends:        python3.10
-Depends:        python3.10-gobject
-Depends:        rtheme-lib
-Depends:        adw-gtk
+Requires:       python3.10
+Requires:       python3.10-gobject
+Requires:       rtheme-lib
+Requires:       adw-gtk
 
 %description plugin-gtk3
 rtheme gtk3 plugin
 
 %package plugin-gtk4
 Summary:        rtheme gtk4 plugin
-Depends:        python3.10
-Depends:        python3.10-gobject
-Depends:        rtheme-lib
+Requires:       python3.10
+Requires:       python3.10-gobject
+Requires:       rtheme-lib
 
 %description plugin-gtk4
 
