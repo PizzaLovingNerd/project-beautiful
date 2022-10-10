@@ -9,7 +9,7 @@ Source0:        https://github.com/risiIndustries/rtheme/archive/refs/heads/main
 
 BuildArch:      noarch
 BuildRequires:  python3-devel
-BuildRequires:  python3-gi
+BuildRequires:  python3-gobject
 BuildRequires:  python3-pydbus
 BuildRequires:  meson
 
