@@ -56,7 +56,7 @@ Requires:       rtheme-lib
 meson build
 
 %install
-%meson_install
+%meson_install -C build
 
 %files lib
 %{python3_sitelib}/rthemelib

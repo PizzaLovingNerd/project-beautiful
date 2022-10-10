@@ -91,13 +91,16 @@ def get_theme_list() -> list[str]:
 
 
 def get_file_from_name(name) -> str:
-    for theme_dir in THEME_DIRS_:
-        if os.path.isdir(theme_dir):
-            for theme in os.listdir(theme_dir):
-                if theme == f"{name}.rtheme" or theme == f"{name}.yaml" \
-                        or theme == f"{name}.yml" \
-                        and check_yaml(f"{theme_dir}/{theme}")[0]:
-                    return f"{theme_dir}/{theme}"
+    if os.path.isfile(name):
+        return name
+    else:
+        for theme_dir in THEME_DIRS_:
+            if os.path.isdir(theme_dir):
+                for theme in os.listdir(theme_dir):
+                    if theme == f"{name}.rtheme" or theme == f"{name}.yaml" \
+                            or theme == f"{name}.yml" \
+                            and check_yaml(f"{theme_dir}/{theme}")[0]:
+                        return f"{theme_dir}/{theme}"
     return None
 
 
