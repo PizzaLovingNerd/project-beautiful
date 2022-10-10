@@ -65,7 +65,7 @@ meson build --prefix=/usr
 
 %files d
 %{_datadir}/rthemed
-%{_datadir}/applications/rthemed.desktop
+%{_datadir}/applications/io.risi.rthemed.desktop
 %{_bindir}/rthemed
 
 %files plugin-gtk3
