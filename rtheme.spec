@@ -53,7 +53,7 @@ Requires:       rtheme-lib
 %prep
 %autosetup -n rtheme-main
 %build
-meson build
+meson build --prefix=/usr
 
 %install
 %meson_install -C build
