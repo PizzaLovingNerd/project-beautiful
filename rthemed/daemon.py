@@ -42,6 +42,8 @@ class DaemonApplication(Gio.Application):
             self.register()
             self.set_default()
             self.daemon.logger.log("rthemed started.")
+            rthemed.apply_theme()
+            self.daemon.logger.log("silently applied theme.")
             GLib.MainLoop().run()
 
         except GLib.Error as e:
@@ -62,6 +64,7 @@ class DaemonApplication(Gio.Application):
 
     def refresh_theme(self, notification: bool = True, *args, **kwargs):
         rthemed.apply_theme()
+        self.daemon.logger.log("applied theme.")
         if notification:
             self.send_notification(
                 "changed_theme",
