@@ -1,10 +1,11 @@
 import importlib
 import os
+import site
 
 import rthemelib.theme_classes as tc
 
 # PLUGIN_DIR = "/usr/share/rtheme/plugins"
-PLUGIN_DIR = "/home/cameron/PycharmProjects/project-beautiful/rthemelib/plugins"
+SITE_DIRS = site.getsitepackages()
 
 
 class PluginManager:
@@ -13,12 +14,13 @@ class PluginManager:
         self.load_plugins()
 
     def load_plugins(self):
-        for plugin in os.listdir(PLUGIN_DIR):
-            if plugin.endswith(".py"):
-                plugin_module = importlib.import_module(f"rthemelib.plugins.{plugin[:-3]}")
-                plugin = plugin_module.Plugin(self)
-                plugin.on_load()
-                self.plugins.append(plugin)
+        for dir in [x for x in SITE_DIRS if os.path.isdir(f"{x}/rthemelib/plugins")]:
+            for plugin in os.listdir(dir + "/rthemelib/plugins"):
+                if plugin.endswith(".py"):
+                    plugin_module = importlib.import_module(f"rthemelib.plugins.{plugin[:-3]}")
+                    plugin = plugin_module.Plugin(self)
+                    plugin.on_load()
+                    self.plugins.append(plugin)
 
     def get_plugins(self):
         return self.plugins
