@@ -1,6 +1,6 @@
 Name:           rtheme
 Version:        0.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        rtheme is a theme manager for the Linux desktop
 
 License:        GPL v3
@@ -20,24 +20,24 @@ Easily Modify and create themes with a .yml file and some plugins.
 
 %package lib
 Summary:        rtheme library
-Requires:       python3.10
-Requires:       python3.10-gobject
+Requires:       python3
+Requires:       python3-gobject
 %description lib
 rtheme library used for cli and python3
 
 %package d
 Summary:        rtheme daemon
 Requires:       systemd
-Requires:       python3.10
-Requires:       python3.10-gobject
+Requires:       python3
+Requires:       python3-gobject
 Requires:       rtheme-lib
 %description d
 Runs rtheme in the background and updates the theme when needed
 
 %package plugin-gtk3
 Summary:        rtheme gtk3 plugin
-Requires:       python3.10
-Requires:       python3.10-gobject
+Requires:       python3
+Requires:       python3-gobject
 Requires:       rtheme-lib
 Requires:       adw-gtk
 
@@ -46,8 +46,8 @@ rtheme gtk3 plugin
 
 %package plugin-gtk4
 Summary:        rtheme gtk4 plugin
-Requires:       python3.10
-Requires:       python3.10-gobject
+Requires:       python3
+Requires:       python3-gobject
 Requires:       rtheme-lib
 
 %description plugin-gtk4

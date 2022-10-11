@@ -9,14 +9,6 @@ gnome_notifications = Gio.Settings.new("org.gnome.desktop.notifications")
 rtheme_settings = Gio.Settings.new("io.risi.rtheme")
 
 
-def get_theme():
-    theme = tc.Theme()
-    theme.parse_yaml(rthemelib.get_file_from_name(
-        rtheme_settings.get_string("theme-name")
-    ))
-    return theme
-
-
 class Logger:
     def __init__(self):
         self.logs = []
@@ -47,11 +39,8 @@ def get_subvariant():
 
 
 def apply_theme():
-    rthemelib.get_file_from_name(
-        rtheme_settings.get_string("theme-name")
-    )
     rthemelib.apply_theme(
-        get_theme(),
+        rthemelib.get_current_theme(),
         rtheme_settings.get_string("variant-name"),
         get_subvariant()
     )

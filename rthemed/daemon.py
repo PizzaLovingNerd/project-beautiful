@@ -62,7 +62,14 @@ class DaemonApplication(Gio.Application):
         notification.set_body(text)
         super().send_notification(notification_id, notification, *args, **kwargs)
 
+
     def refresh_theme(self, notification: bool = True, *args, **kwargs):
+        variants_available = [
+            x.name for x in rthemelib.get_current_theme().variants
+        ]
+        if rtheme_settings.get_string("variant-name") not in variants_available:
+            rtheme_settings.set_string("variant-name", "main")
+
         rthemed.apply_theme()
         self.daemon.logger.log("applied theme.")
         if notification:
