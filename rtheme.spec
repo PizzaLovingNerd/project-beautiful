@@ -1,6 +1,6 @@
 Name:           rtheme
 Version:        0.1
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        rtheme is a theme manager for the Linux desktop
 
 License:        GPL v3
@@ -39,7 +39,7 @@ Summary:        rtheme gtk3 plugin
 Requires:       python3
 Requires:       python3-gobject
 Requires:       rtheme-lib
-Requires:       adw-gtk3
+Requires:       adw-gtk-theme
 
 %description plugin-gtk3
 rtheme gtk3 plugin
