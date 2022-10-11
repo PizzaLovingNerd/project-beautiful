@@ -39,7 +39,7 @@ Summary:        rtheme gtk3 plugin
 Requires:       python3
 Requires:       python3-gobject
 Requires:       rtheme-lib
-Requires:       adw-gtk
+Requires:       adw-gtk3
 
 %description plugin-gtk3
 rtheme gtk3 plugin
