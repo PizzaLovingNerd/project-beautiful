@@ -58,10 +58,10 @@ Requires:       rtheme-lib
 meson build --prefix=%{_exec_prefix}
 
 %install
-mkdir -p %{_userunitdir}
-mkdir -p %{_userpresetdir}
-cp -a rthemed/systemd/rthemed.service %{_userunitdir}/rthemed.service
-cp -a rthemed/systemd/95-rthemed.preset %{_userpresetdir}/95-rthemed.preset
+mkdir -p %{buildroot}%{_userunitdir}
+mkdir -p %{buildroot}%{_userpresetdir}
+cp -a rthemed/systemd/rthemed.service %{buildroot}%{_userunitdir}/rthemed.service
+cp -a rthemed/systemd/95-rthemed.preset %{buildroot}%{_userpresetdir}/95-rthemed.preset
 %meson_install -C build
 
 %files lib
