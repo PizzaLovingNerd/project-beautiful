@@ -1,6 +1,6 @@
 Name:           rtheme
 Version:        0.1
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        rtheme is a theme manager for the Linux desktop
 
 License:        GPL v3
@@ -29,6 +29,7 @@ rtheme library used for cli and python3
 Summary:        rtheme daemon
 Requires:       systemd
 Requires:       python3
+Requires:       python3-pydbus
 Requires:       python3-gobject
 Requires:       rtheme-lib
 %description d
