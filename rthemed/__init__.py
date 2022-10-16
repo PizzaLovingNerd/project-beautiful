@@ -25,23 +25,3 @@ class Logger:
 
     def get_last_log(self):
         return self.logs[-1]
-
-
-def get_subvariant():
-    if gnome_a11y.get_boolean("high-contrast"):
-        high_contrast = "-hc"
-    else:
-        high_contrast = ""
-    if gnome_interface.get_string("color-scheme") == "prefer-dark":
-        return "dark" + high_contrast
-    else:
-        return "light" + high_contrast
-
-
-def apply_theme():
-    rthemelib.apply_theme(
-        rthemelib.get_current_theme(),
-        rtheme_settings.get_string("variant-name"),
-        get_subvariant()
-    )
-

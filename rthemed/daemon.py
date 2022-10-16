@@ -14,7 +14,10 @@ class Daemon:
     def __init__(self):
         self.logger = rthemed.Logger()
         rthemelib.logger = self.logger
+
+        self.logger.log("silently applied theme.")
         self.application = DaemonApplication(self)
+        self.application.refresh_theme(notification=False)
         self.application.run()
 
     def handle_error(self, error):
@@ -42,8 +45,6 @@ class DaemonApplication(Gio.Application):
             self.register()
             self.set_default()
             self.daemon.logger.log("rthemed started.")
-            rthemed.apply_theme()
-            self.daemon.logger.log("silently applied theme.")
             GLib.MainLoop().run()
 
         except GLib.Error as e:
@@ -70,7 +71,11 @@ class DaemonApplication(Gio.Application):
         if rtheme_settings.get_string("variant-name") not in variants_available:
             rtheme_settings.set_string("variant-name", "main")
 
-        rthemed.apply_theme()
+        rthemelib.apply_theme(
+            rthemelib.get_current_theme(),
+            rtheme_settings.get_string("variant-name"),
+            get_subvariant()
+        )
         self.daemon.logger.log("applied theme.")
         if notification:
             self.send_notification(
@@ -133,3 +138,16 @@ class InvalidDaemonBus(DaemonBus):
 
     def Status(self):
         return False, ["Cannot connect to Daemon."]
+
+
+
+def get_subvariant():
+    if gnome_a11y.get_boolean("high-contrast"):
+        high_contrast = "-hc"
+    else:
+        high_contrast = ""
+    if gnome_interface.get_string("color-scheme") == "prefer-dark":
+        return "dark" + high_contrast
+    else:
+        return "light" + high_contrast
+    
