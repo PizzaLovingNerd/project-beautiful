@@ -69,7 +69,6 @@ blue:
         accent_color: "#3584e4"
     global:
         accent_bg_color: "#62a0ea"
-        accent_fg_color: "#ffffff"
 green:
     light:
         accent_color: "#26a269"
@@ -77,7 +76,6 @@ green:
         accent_color: "#26a269"
     global:
         accent_bg_color: "#26a269"
-        accent_fg_color: "#ffffff"
 yellow:
     light:
         accent_color: "#e5a50a"
@@ -85,7 +83,6 @@ yellow:
         accent_color: "#e5a50a"
     global:
         accent_bg_color: "#e5a50a"
-        accent_fg_color: "rgba(0, 0, 0, 0.8)"
 orange:
     light:
         accent_color: "#e66100"
@@ -93,7 +90,6 @@ orange:
         accent_color: "#ffa348"
     global:
         accent_bg_color: "#f8c45c"
-        accent_fg_color: "rgba(0, 0, 0, 0.8)"
 red:
     light:
         accent_color: "#ed333b"
@@ -101,7 +97,6 @@ red:
         accent_color: "#e01b24"
     global:
         accent_bg_color: "#c01c28"
-        accent_fg_color: "#ffffff"
 purple:
     light:
         accent_color: "#c061cb"
@@ -109,7 +104,6 @@ purple:
         accent_color: "#9141ac"
     global:
         accent_bg_color: "#813d9c"
-        accent_fg_color: "#ffffff"
 brown:
     light:
         accent_color: "#b5835a"
@@ -117,4 +111,3 @@ brown:
         accent_color: "#986a44"
     global:
         accent_bg_color: "#865e3c"
-        accent_fg_color: "#ffffff"
