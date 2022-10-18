@@ -72,19 +72,19 @@ blue:
         accent_fg_color: "#ffffff"
 green:
     light:
-        accent_color: "#2ec27e"
+        accent_color: "#26a269"
     dark:
-        accent_color: "#33d17a"
+        accent_color: "#26a269"
     global:
-        accent_bg_color: "#57e389"
+        accent_bg_color: "#26a269"
         accent_fg_color: "#ffffff"
 yellow:
     light:
-        accent_color: "#f5c211"
+        accent_color: "#e5a50a"
     dark:
-        accent_color: "#f6d32d"
+        accent_color: "#e5a50a"
     global:
-        accent_bg_color: "#f8e45c"
+        accent_bg_color: "#e5a50a"
         accent_fg_color: "rgba(0, 0, 0, 0.8)"
 orange:
     light:
