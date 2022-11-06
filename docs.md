@@ -18,7 +18,6 @@ $ sudo meson install -C build
 ```
 
 # Using rtheme
-### Using rtheme
 
 ## rthemed
 ### Start with systemd
@@ -38,10 +37,21 @@ In order to add a theme, you need to place the theme into a valid directory. The
 - `~/.rthemes` and `~/.local/share/rthemes` (for locally installed themes)
 
 ### Listing themes
-Before we set a theme, we need to check for available themes. You can do this with
+Before we set a theme, we need to check for available themes. You can do this with:
 ```bash
 $ rthemelib list-themes
 ```
+Setting a theme also requires setting a variant.
+```bash
+$ rthemelib list-variants
+```
+If you are unsure which variant to use, use the `main` variant as that is a variant all themes must have, and is considered default.
 
+
+## Setting a theme
 ### Using GSettings
-We are currently using GSettings to store rtheme related settings. To set a theme and theme variant
+We are currently using GSettings to store rtheme related settings. To set a theme and theme variant use the following commands:
+```bash
+$ gsettings set io.risi.rtheme theme-name "rthemed_theme"
+$ gsettings set io.risi.rtheme variant-name "rthemed_variant"
+```
