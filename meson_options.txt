@@ -2,3 +2,24 @@ option('systemduserunitdir',
   type: 'string',
   description: 'Directory for systemd user service files'
 )
+
+# Features
+option('library',
+  type: 'feature',
+  description: 'rthemelib',
+  value: 'enabled')
+
+option('daemon',
+  type: 'feature',
+  description: 'rthemed',
+  value: 'enabled')
+
+option('plugin_gtk3',
+  type: 'feature',
+  description: 'Gtk3 plugin for rtheme',
+  value: 'enabled')
+
+option('plugin_gtk4',
+  type: 'feature',
+  description: 'Gtk4 plugin for rtheme',
+  value: 'enabled')

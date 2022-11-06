@@ -24,8 +24,14 @@ endif
 
 subdir('data')
 subdir('themes')
-subdir('rthemelib')
-subdir('rthemed')
+
+if get_option('library').enabled()
+  subdir('rthemelib')
+endif
+
+if get_option('daemon').enabled()
+  subdir('rthemed')
+endif
 
 gnome.post_install(
      glib_compile_schemas: true,
@@ -33,5 +39,9 @@ gnome.post_install(
 )
 
 summary({
-  'Prefix': get_option('prefix')
+  'Prefix': get_option('prefix'),
+  'rthemelib': get_option('library'),
+  'rthemed': get_option('daemon'),
+  'GTK4 Plugin': get_option('plugin_gtk4'),
+  'GTK3 Plugin': get_option('plugin_gtk3')
 })
