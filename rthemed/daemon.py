@@ -71,19 +71,58 @@ class DaemonApplication(Gio.Application):
         if rtheme_settings.get_string("variant-name") not in variants_available:
             rtheme_settings.set_string("variant-name", "main")
 
-        rthemelib.apply_theme(
-            rthemelib.get_current_theme(),
-            rtheme_settings.get_string("variant-name"),
-            get_subvariant()
-        )
-        self.daemon.logger.log("applied theme.")
-        if notification:
-            self.send_notification(
-                "changed_theme",
-                "A theme change was detected. The theme has been refreshed.\n\n"
-                "Some (or all) of your applications may need to be restarted for the changes to take effect."
+        subvariant = get_subvariant()
+        variant = rtheme_settings.get_string("variant-name")
+        theme = rthemelib.get_current_theme()
+
+        if subvariant not in theme.get_variant_from_name(variant).subvariants:
+            original_subvariant = subvariant
+            self.daemon.logger.log("Failed to get subvariant.")
+
+            if subvariant.endswith("-hc"):
+                subvariant = subvariant[:-3]
+
+            if subvariant not in theme.get_variant_from_name(variant).subvariants:
+                if subvariant == "light":
+                    subvariant = "dark"
+                elif subvariant == "dark":
+                    subvariant = "light"
+                if subvariant not in theme.get_variant_from_name(variant).subvariants:
+                    self.daemon.logger.log("Failed to get subvariant.")
+                    if notification:
+                        self.send_notification(
+                            "theme_error",
+                            "Unable to set theme."
+                        )
+                    return
+                if notification:
+                    self.daemon.logger.log(subvariant + " not available, using " + subvariant)
+                    self.send_notification(
+                        "theme_error",
+                        f"Failed to get subvariant. Subvariant {original_subvariant} may not be supported by your theme."
+                    )
+
+        try:
+            rthemelib.apply_theme(
+                rthemelib.get_current_theme(),
+                rtheme_settings.get_string("variant-name"),
+                get_subvariant()
             )
-            self.daemon.logger.log(f"Theme refreshed to {rtheme_settings.get_string('theme-name')}")
+            self.daemon.logger.log("applied theme.")
+            if notification:
+                self.send_notification(
+                    "changed_theme",
+                    "A theme change was detected. The theme has been refreshed.\n\n"
+                    "Some (or all) of your applications may need to be restarted for the changes to take effect."
+                )
+                self.daemon.logger.log(f"Theme refreshed to {rtheme_settings.get_string('theme-name')}")
+        except:
+            self.daemon.logger.log("Failed to apply theme.")
+            if notification:
+                self.send_notification(
+                    "theme_error",
+                    "Unable to set theme."
+                )
 
 
 class DaemonBus(object):
@@ -110,17 +149,6 @@ class DaemonBus(object):
         self._daemon_running = True
         self.daemon.application.start()
 
-    def Stop(self):
-        self.daemon.application.stop()
-        self._daemon_running = False
-        self.daemon.logger.log("rthemed stopped.")
-
-    def ViewLogs(self):
-        return self.daemon.logger.get_logs()
-
-    def Status(self):
-        return self._daemon_running, self.daemon.logger.get_logs()[:-1]
-
 
 class InvalidDaemonBus(DaemonBus):
     def __init__(self):
@@ -129,15 +157,6 @@ class InvalidDaemonBus(DaemonBus):
 
     def Start(self):
         print("Cannot start daemon")
-
-    def Stop(self):
-        print("Cannot stop daemon. Maybe already stopped?")
-
-    def ViewLogs(self):
-        return ["Cannot connect to Daemon. Daemon not running?"]
-
-    def Status(self):
-        return False, ["Cannot connect to Daemon."]
 
 
 

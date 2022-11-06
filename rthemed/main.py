@@ -28,21 +28,12 @@ def main():
             check_arguments(1)
             if daemonbus.Status()[0]:
                 print("rthemed is currently running.")
-                print(daemonbus.Status()[:1])
+            else:
+                print("rthemed is not running.")
 
-        case "reload":
-            print("Stopping rthemed...")
-            daemonbus.Stop()
-            print("Starting rthemed...")
-            daemonbus.Start()
         case "start":
             print("Starting rthemed...")
             daemon = rthemed.daemon.DaemonBus(rthemed.daemon.Daemon())
             daemon.Start()
-        case "stop":
-            print("Stopping rthemed...")
-            daemonbus.Stop()
-        case "view-logs":
-            print("/n".join(daemonbus.ViewLogs()))
         case default:
             print(rthemelib.constants.HELP_PROMPT)
