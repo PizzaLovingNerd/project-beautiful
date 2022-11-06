@@ -11,6 +11,17 @@ py = python.find_installation('python3', required: true, modules: [
   'pydbus', 'gi'
 ])
 
+systemd = dependency('systemd', version: '>= 242', required: true)
+if systemd.found()
+  systemduserunitdir = get_option('systemduserunitdir')
+  if systemduserunitdir == ''
+    systemduserunitdir = systemd.get_variable(
+      pkgconfig: 'systemduserunitdir',
+      pkgconfig_define: ['prefix', get_option('prefix')]
+    )
+  endif
+endif
+
 subdir('data')
 subdir('themes')
 subdir('rthemelib')
@@ -18,6 +29,9 @@ subdir('rthemed')
 
 gnome.post_install(
      glib_compile_schemas: true,
-#    gtk_update_icon_cache: true,
   update_desktop_database: true,
 )
+
+summary({
+  'Prefix': get_option('prefix')
+})

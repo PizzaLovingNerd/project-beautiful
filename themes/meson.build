@@ -4,8 +4,7 @@ moduledir = join_paths(pkgdatadir, 'rthemes')
 themes = [
   'adwaita.yml',
   'nord.yml',
-  'risi.yml',
-  'nord_broken.yml'
+  'risi.yml'
 ]
 
 install_data(themes, install_dir: moduledir)

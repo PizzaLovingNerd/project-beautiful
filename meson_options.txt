@@ -1,0 +1,4 @@
+option('systemduserunitdir',
+  type: 'string',
+  description: 'Directory for systemd user service files'
+)
