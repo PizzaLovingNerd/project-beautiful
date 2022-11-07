@@ -1,8 +1,23 @@
 import sys
+
+import rthemed
 import rthemelib
 from gi.repository import Gio
 
 rtheme_settings = Gio.Settings.new("io.risi.rtheme")
+
+def get_subvariant():
+    gnome_interface = Gio.Settings.new("org.gnome.desktop.interface")
+    gnome_a11y = Gio.Settings.new("org.gnome.desktop.a11y.interface")
+    if gnome_a11y.get_boolean("high-contrast"):
+        high_contrast = "-hc"
+    else:
+        high_contrast = ""
+    if gnome_interface.get_string("color-scheme") == "prefer-dark":
+        return "dark" + high_contrast
+    else:
+        return "light" + high_contrast
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
@@ -38,5 +53,16 @@ if __name__ == "__main__":
             print(' '.join(variants))
         case "get-theme-path":
             print(rthemelib.get_current_theme_path())
+        case "apply":
+            rthemelib.apply_theme(
+                rthemelib.get_current_theme(),
+                rtheme_settings.get_string("variant-name"),
+                get_subvariant()
+            )
+            print(
+                f"{rtheme_settings.get_string('theme-name')}-"
+                f"{rtheme_settings.get_string('variant-name')}"
+                " applied"
+            )
         case default:
             print(rthemelib.constants.HELP_PROMPT)
