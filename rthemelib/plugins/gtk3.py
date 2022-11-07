@@ -4,7 +4,7 @@ import os
 
 HOME_ = os.path.expanduser('~')
 CSS_FILE_ = f"{HOME_}/.config/gtk-3.0/gtk.css"
-CSS_DIR_ = f"{HOME_}/.config/gtk-4.0/"
+CSS_DIR_ = f"{HOME_}/.config/gtk-3.0/"
 
 class Plugin(pm.Plugin):
     def __init__(self, plugin_manager: pm.PluginManager):
