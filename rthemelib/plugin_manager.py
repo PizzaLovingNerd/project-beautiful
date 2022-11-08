@@ -27,11 +27,12 @@ class PluginManager:
 
 
 class Plugin:
-    def __init__(self, name: str, description: str, version: str, author: str, plugin_manager: PluginManager):
-        self.name = name
-        self.description = description
-        self.version = version
-        self.author = author
+    def __init__(self, plugin_manager: PluginManager):
+        self.name = ""
+        self.description = ""
+        self.version = ""
+        self.author = ""
+        self.plugin_properties = []
         self.plugin_manager = plugin_manager
 
     def on_load(self):

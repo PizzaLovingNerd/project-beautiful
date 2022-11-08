@@ -33,7 +33,7 @@ THEME_PROPERTIES = [
     "popover_fg_color",
     "shade_color",
     "scrollbar_outline_color",
-    "custom_css"
+    "plugin_properties"
 ]
 
 # A dictionary of GNOME Palette colors converted to Hex values.

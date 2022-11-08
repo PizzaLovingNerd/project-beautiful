@@ -8,7 +8,13 @@ class Subvariant:
     def __init__(self, name: str, properties: dict):
         self.name = name
         self.properties = properties
+        self.plugin_properties = {}
         self.parent_variant = None
+
+        # Making sure plugin properties are not in the properties dict
+        if "plugin_properties" in self.properties:
+            self.plugin_properties = self.properties["plugin_properties"]
+            del self.properties["plugin_properties"]
 
 class Variant:
     """A class to represent a theme variant."""
@@ -48,7 +54,9 @@ class Variant:
             self.add_subvariant(dark_hc)
 
     def add_subvariant(self, subvariant: Subvariant):
+        # Set the parent variant of the subvariant to this variant.
         subvariant.parent_variant = self
+
         self.subvariants.append(subvariant)
 
     def get_subvariant_from_name(self, subvariant_name: str) -> Subvariant or None:

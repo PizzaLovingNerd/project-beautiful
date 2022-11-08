@@ -9,10 +9,12 @@ CSS_DIR_ = f"{HOME_}/.config/gtk-4.0/"
 
 class Plugin(pm.Plugin):
     def __init__(self, plugin_manager: pm.PluginManager):
-        super().__init__(
-            "gtk3", "A plugin for GTK3 themes. Requires adw-gtk3",
-            "0.1", "PizzaLovingNerd", plugin_manager
-        )
+        super().__init__(plugin_manager)
+        self.name = "gtk4"
+        self.description = "A plugin for GTK4/Libadwaita themes."
+        self.version = "0.1"
+        self.author = "PizzaLovingNerd"
+        self.plugin_properties = ["custom_css"]
 
     def on_load(self):  # Runs when the plugin is loaded
         pass
@@ -31,14 +33,13 @@ class Plugin(pm.Plugin):
             "OTHERWISE IT MAY BE OVERWRITTEN BY RTHEMED */", ""
         ]
         for items in subvariant.properties.items():
-            if items[0] != "custom_css":
-                lines.append(f"@define-color {items[0]} {items[1]};")
-            else:
-                lines.append("")
-                lines.append("/* Custom CSS */")
-                for item in items[1]["gtk4"].splitlines():
-                    lines.append(item)
-                lines.append("")
+            lines.append(f"@define-color {items[0]} {items[1]};")
+        if "gtk3" in subvariant.plugin_properties:
+            lines.append("")
+            lines.append("/* Custom CSS */")
+            for item in subvariant.plugin_properties["gtk4"]["custom_css"].splitlines():
+                lines.append(item)
+            lines.append("")
         for line in lines:
             with open(CSS_FILE_, "a") as f:
                 f.write(f"{line}\n")
