@@ -6,6 +6,7 @@ from gi.repository import Gio
 
 rtheme_settings = Gio.Settings.new("io.risi.rtheme")
 
+
 def get_subvariant():
     gnome_interface = Gio.Settings.new("org.gnome.desktop.interface")
     gnome_a11y = Gio.Settings.new("org.gnome.desktop.a11y.interface")

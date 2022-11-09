@@ -1,3 +1,5 @@
+import traceback
+
 import rthemed
 import rthemelib
 from gi.repository import Gio
@@ -75,20 +77,23 @@ class DaemonApplication(Gio.Application):
         variant = rtheme_settings.get_string("variant-name")
         theme = rthemelib.get_current_theme()
 
-        if subvariant not in theme.get_variant_from_name(variant).subvariants:
+        if subvariant not in theme.get_variant_from_name(variant).get_subvariant_names():
             original_subvariant = subvariant
             self.daemon.logger.log("Failed to get subvariant.")
 
             if subvariant.endswith("-hc"):
                 subvariant = subvariant[:-3]
 
-            if subvariant not in theme.get_variant_from_name(variant).subvariants:
+            if subvariant not in theme.get_variant_from_name(variant).get_subvariant_names():
                 if subvariant == "light":
                     subvariant = "dark"
                 elif subvariant == "dark":
                     subvariant = "light"
-                if subvariant not in theme.get_variant_from_name(variant).subvariants:
-                    self.daemon.logger.log("Failed to get subvariant.")
+                if subvariant not in theme.get_variant_from_name(variant).get_subvariant_names():
+                    print(theme.get_variant_from_name(variant).subvariants)
+                    self.daemon.logger.log(
+                        f"Failed to get subvariant. Subvariant {original_subvariant} may not be supported by your theme."
+                    )
                     if notification:
                         self.send_notification(
                             "theme_error",
@@ -116,8 +121,9 @@ class DaemonApplication(Gio.Application):
                     "Some (or all) of your applications may need to be restarted for the changes to take effect."
                 )
                 self.daemon.logger.log(f"Theme refreshed to {rtheme_settings.get_string('theme-name')}")
-        except:
+        except Exception as e:
             self.daemon.logger.log("Failed to apply theme.")
+            self.daemon.logger.log(traceback.print_exc())
             if notification:
                 self.send_notification(
                     "theme_error",

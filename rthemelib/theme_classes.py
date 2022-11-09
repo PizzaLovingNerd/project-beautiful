@@ -23,6 +23,12 @@ class Variant:
         self.theme = None
         self.subvariants = []
 
+    def get_subvariant_names(self) -> list:
+        names = []
+        for subvariant in self.subvariants:
+            names.append(subvariant.name)
+        return names
+
     def create_subvariants(self, subvariants_dict: dict):
         """Creates subvariants from a dictionary. Some subvariants may be created based on another subvariant."""
         self.subvariants = []
