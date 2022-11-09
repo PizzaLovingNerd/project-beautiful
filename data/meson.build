@@ -1,6 +1,8 @@
-install_data('io.risi.rthemed.desktop',
-  install_dir: join_paths(get_option('datadir'), 'applications')
-)
+if get_option('daemon').enabled()
+  install_data('io.risi.rthemed.desktop',
+    install_dir: join_paths(get_option('datadir'), 'applications')
+  )
+endif
 
 install_data('io.risi.rtheme.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')

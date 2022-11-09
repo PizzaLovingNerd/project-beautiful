@@ -11,13 +11,37 @@ py = python.find_installation('python3', required: true, modules: [
   'pydbus', 'gi'
 ])
 
+systemd = dependency('systemd', version: '>= 242', required: true)
+if systemd.found()
+  systemduserunitdir = get_option('systemduserunitdir')
+  if systemduserunitdir == ''
+    systemduserunitdir = systemd.get_variable(
+      pkgconfig: 'systemduserunitdir',
+      pkgconfig_define: ['prefix', get_option('prefix')]
+    )
+  endif
+endif
+
 subdir('data')
 subdir('themes')
-subdir('rthemelib')
-subdir('rthemed')
+
+if get_option('library').enabled()
+  subdir('rthemelib')
+endif
+
+if get_option('daemon').enabled()
+  subdir('rthemed')
+endif
 
 gnome.post_install(
      glib_compile_schemas: true,
-#    gtk_update_icon_cache: true,
   update_desktop_database: true,
 )
+
+summary({
+  'Prefix': get_option('prefix'),
+  'rthemelib': get_option('library'),
+  'rthemed': get_option('daemon'),
+  'GTK4 Plugin': get_option('plugin_gtk4'),
+  'GTK3 Plugin': get_option('plugin_gtk3')
+})
