@@ -1,10 +1,11 @@
+import glob
 import importlib
 import os
 import site
 
+import rthemelib
 import rthemelib.theme_classes as tc
 
-# PLUGIN_DIR = "/usr/share/rtheme/plugins"
 SITE_DIRS = site.getsitepackages()
 
 
@@ -14,12 +15,22 @@ class PluginManager:
         self.load_plugins()
 
     def load_plugins(self):
-        for dir in [x for x in SITE_DIRS if os.path.isdir(f"{x}/rthemelib/plugins")]:
-            for plugin in os.listdir(dir + "/rthemelib/plugins"):
-                if plugin.endswith(".py"):
-                    plugin_module = importlib.import_module(f"rthemelib.plugins.{plugin[:-3]}")
+        for directory in [x for x in SITE_DIRS if os.path.isdir(f"{x}/rthemelib/plugins")]:
+            for plugin in glob.glob(os.path.join(directory, "rthemelib/plugins/*.py")):
+                plugin = os.path.basename(plugin)
+                plugin_module = importlib.import_module(f"rthemelib.plugins.{plugin[:-3]}")
+                plugin = plugin_module.Plugin(self)
+                plugin.on_load()
+                self.plugins.append(plugin)
+            for possible_plugin in os.walk(os.path.join(directory, "rthemelib/plugins")):
+                if "__init__.py" in possible_plugin[2]:
+                    print(f"Loaded plugin {plugin.name}")
+                    plugin_module = importlib.import_module(
+                        f"rthemelib.plugins.{possible_plugin[0].split('/')[-1]}.__main__"
+                    )
                     plugin = plugin_module.Plugin(self)
                     plugin.on_load()
+                    print(f"Loaded plugin {plugin.name}")
                     self.plugins.append(plugin)
 
     def get_plugins(self):

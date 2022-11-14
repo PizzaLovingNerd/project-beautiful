@@ -15,7 +15,6 @@ session_bus = SessionBus()
 class Daemon:
     def __init__(self):
         self.logger = rthemed.Logger()
-        rthemelib.logger = self.logger
 
         self.logger.log("silently applied theme.")
         self.application = DaemonApplication(self)
@@ -90,7 +89,6 @@ class DaemonApplication(Gio.Application):
                 elif subvariant == "dark":
                     subvariant = "light"
                 if subvariant not in theme.get_variant_from_name(variant).get_subvariant_names():
-                    print(theme.get_variant_from_name(variant).subvariants)
                     self.daemon.logger.log(
                         f"Failed to get subvariant. Subvariant {original_subvariant} may not be supported by your theme."
                     )
@@ -163,7 +161,6 @@ class InvalidDaemonBus(DaemonBus):
 
     def Start(self):
         print("Cannot start daemon")
-
 
 
 def get_subvariant():

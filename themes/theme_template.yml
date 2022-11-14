@@ -13,24 +13,27 @@ main:  # All themes have a main varient
     global: # Applies to both light and dark
         accent_color: "@yellow_1"
         accent_fg_color: "#ffffff"
-        # You can use the custom CSS property to apply custom css settings if you need to do that for any reason.
-        custom_css: # You must specifiy custom css on a per plugin basis.
-            "gtk4": |
-                windowcontrols.end {
-                  margin-right: 8px;
-                }
-                
-                windowcontrols.start {
-                  margin-left: 8px;
-                }
-            "gtk3": |
-                windowcontrols.end {
-                  margin-right: 8px;
-                }
-                
-                windowcontrols.start {
-                  margin-left: 8px;
-                }
+
+        # Some plugins have custom properties you can edit. However, these should not be required.
+        plugin_properties:
+            gtk4:
+                "custom_css": |
+                    windowcontrols.end {
+                      margin-right: 8px;
+                    }
+
+                    windowcontrols.start {
+                      margin-left: 8px;
+                    }
+            "gtk3":
+                "custom_css": |
+                    windowcontrols.end {
+                      margin-right: 8px;
+                    }
+
+                    windowcontrols.start {
+                      margin-left: 8px;
+                    }
             
 
     # Subvariants for high contrast mode:

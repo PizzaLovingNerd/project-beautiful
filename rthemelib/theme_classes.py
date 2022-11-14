@@ -1,4 +1,3 @@
-import copy
 import yaml
 
 
@@ -15,6 +14,7 @@ class Subvariant:
         if "plugin_properties" in self.properties:
             self.plugin_properties = self.properties["plugin_properties"]
             del self.properties["plugin_properties"]
+
 
 class Variant:
     """A class to represent a theme variant."""
@@ -108,7 +108,7 @@ class Theme:
                         applied_data.update(self.theme_data[variant][subvariant])
                         self.theme_data[variant][subvariant] = applied_data
 
-        for v in variants: # Generate variants
+        for v in variants:  # Generate variants
             variant = Variant(v)
             variant.theme = self
             variant.create_subvariants(self.theme_data[v])

@@ -11,7 +11,7 @@ HOME_ = os.path.expanduser('~')
 THEME_DIRS_ = [(x + "/rthemes").replace("//", "/") for x in GLib.get_system_data_dirs()] + \
     [GLib.get_user_data_dir() + "/rthemes", GLib.get_home_dir() + "/.rthemes"]
 
-plugin_manager = pm.PluginManager()
+manager = pm.PluginManager()
 rtheme_settings = Gio.Settings.new("io.risi.rtheme")
 
 
@@ -76,7 +76,7 @@ def check_yaml(theme_file: str) -> tuple[bool, str]:
 
 
 def apply_theme(theme: tc.Theme, variant_name: str, subvariant_name: str):
-    for plugin in plugin_manager.get_plugins():
+    for plugin in manager.get_plugins():
         plugin.apply_theme(theme.get_subvariant_from_name(variant_name, subvariant_name))
 
 

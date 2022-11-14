@@ -1,6 +1,5 @@
 import sys
 
-import rthemed
 import rthemelib
 from gi.repository import Gio
 
