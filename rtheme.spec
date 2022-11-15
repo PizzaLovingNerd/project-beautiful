@@ -8,9 +8,9 @@ URL:            https://github.com/risiIndustries/rtheme
 Source0:        https://github.com/risiIndustries/rtheme/archive/refs/heads/main.tar.gz
 
 BuildArch:      noarch
-BuildRequires:  python3-devel
-BuildRequires:  python3-gobject
-BuildRequires:  python3-pydbus
+BuildRequires:  python3.11-devel
+BuildRequires:  python3.11-gobject
+BuildRequires:  python3.11-pydbus
 BuildRequires:  meson
 BuildRequires:  desktop-file-utils
 BuildRequires:  systemd-rpm-macros
