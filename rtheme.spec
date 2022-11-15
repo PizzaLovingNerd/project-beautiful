@@ -73,8 +73,8 @@ meson build --prefix=%{_exec_prefix}
 
 %install
 %meson_install -C build
-rm %{buildroot}%{_exec_prefix}/systemd/user/rthemed.service
-rm %{buildroot}%{_exec_prefix}/systemd/user-preset/95-rthemed.preset
+rm %{buildroot}%{_exec_prefix}/lib/systemd/user/rthemed.service
+rm %{buildroot}%{_exec_prefix}/lib/systemd/user-preset/95-rthemed.preset
 
 %files lib
 %{python3_sitelib}/rthemelib
@@ -91,8 +91,8 @@ rm %{buildroot}%{_exec_prefix}/systemd/user-preset/95-rthemed.preset
 %{_datadir}/rthemed
 %{_datadir}/applications/io.risi.rthemed.desktop
 %{_bindir}/rthemed
-%{_libdir}/lib/systemd/user/rthemed.service
-%{_libdir}/lib/systemd/user-preset/95-rthemed.preset
+%{_libdir}/systemd/user/rthemed.service
+%{_libdir}/systemd/user-preset/95-rthemed.preset
 
 %files plugin-gtk3
 %{python3_sitelib}/rthemelib/plugins/gtk3.py
