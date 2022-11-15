@@ -14,6 +14,7 @@ BuildRequires:  python3-pydbus
 BuildRequires:  meson
 BuildRequires:  desktop-file-utils
 BuildRequires:  systemd-rpm-macros
+BuildRequires:  systemd-devel
 BuildRequires:  cmake
 
 %description
