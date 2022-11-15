@@ -14,6 +14,8 @@ BuildRequires:  python3-pydbus
 BuildRequires:  meson
 BuildRequires:  desktop-file-utils
 BuildRequires:  systemd-rpm-macros
+BuildRequires:  systemd-devel
+BuildRequires:  cmake
 
 %description
 Easily Modify and create themes with a .yml file and some plugins.
@@ -60,6 +62,7 @@ Requires: python3
 Requires: python3-gobject
 Requires: rtheme-lib
 Requires: gnome-shell-extension-risi-gnome
+Requires: sassc
 
 %description plugin-gnome-shell
 Adds support for GNOME Shell

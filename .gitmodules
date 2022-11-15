@@ -1,3 +1,3 @@
 [submodule "rthemelib/plugins/gnome_shell"]
 	path = rthemelib/plugins/gnome_shell
-	url = git@github.com:risiIndustries/rtheme-shell.git
+	url = https://github.com/risiIndustries/rtheme-shell.git
