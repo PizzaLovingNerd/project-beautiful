@@ -73,8 +73,6 @@ meson build --prefix=%{_exec_prefix}
 
 %install
 %meson_install -C build
-rm %{buildroot}%{_exec_prefix}/lib/systemd/user/rthemed.service
-rm %{buildroot}%{_exec_prefix}/lib/systemd/user-preset/95-rthemed.preset
 
 %files lib
 %{python3_sitelib}/rthemelib
