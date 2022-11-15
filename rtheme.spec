@@ -60,6 +60,7 @@ Requires: python3
 Requires: python3-gobject
 Requires: rtheme-lib
 Requires: gnome-shell-extension-risi-gnome
+Requires: sassc
 
 %description plugin-gnome-shell
 Adds support for GNOME Shell
