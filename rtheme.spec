@@ -72,11 +72,9 @@ Adds support for GNOME Shell
 meson build --prefix=%{_exec_prefix}
 
 %install
-mkdir -p %{buildroot}%{_userunitdir}
-mkdir -p %{buildroot}%{_userpresetdir}
-cp -a rthemed/systemd/rthemed.service %{buildroot}%{_userunitdir}/rthemed.service
-cp -a rthemed/systemd/95-rthemed.preset %{buildroot}%{_userpresetdir}/95-rthemed.preset
 %meson_install -C build
+rm %{buildroot}%{_exec_prefix}/systemd/user/rthemed.service
+rm %{buildroot}%{_exec_prefix}/systemd/user-preset/95-rthemed.preset
 
 %files lib
 %{python3_sitelib}/rthemelib
