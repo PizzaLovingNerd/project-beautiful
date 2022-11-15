@@ -1,6 +1,6 @@
 Name:           rtheme
 Version:        0.2
-Release:        14%{?dist}
+Release:        15%{?dist}
 Summary:        rtheme is a theme manager for the Linux desktop
 
 License:        GPL v3
