@@ -1,6 +1,6 @@
 Name:           rtheme
-Version:        0.1
-Release:        12%{?dist}
+Version:        0.2
+Release:        14%{?dist}
 Summary:        rtheme is a theme manager for the Linux desktop
 
 License:        GPL v3
@@ -52,6 +52,17 @@ Requires:       python3-gobject
 Requires:       rtheme-lib
 
 %description plugin-gtk4
+rtheme gtk4 plugin
+
+%package plugin-gnome-shell
+Summary: Adds gnome shell support
+Requires: python3
+Requires: python3-gobject
+Requires: rtheme-lib
+Requires: gnome-shell-extension-risi-gnome
+
+%description plugin-gnome-shell
+Adds support for GNOME Shell
 
 %prep
 %autosetup -n rtheme-main
@@ -88,6 +99,9 @@ cp -a rthemed/systemd/95-rthemed.preset %{buildroot}%{_userpresetdir}/95-rthemed
 
 %files plugin-gtk4
 %{python3_sitelib}/rthemelib/plugins/gtk4.py
+
+%files plugin-gnome-shell
+%{python3_sitelib}/rthemelib/plugins/gnome-shell
 
 %changelog
 * Sun Oct 9 2022 PizzaLovingNerd
