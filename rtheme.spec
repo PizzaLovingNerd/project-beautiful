@@ -125,6 +125,7 @@ cp rthemelib/__main__.py %{buildroot}%{_bindir}/rthemelib
 %{_bindir}/rthemed
 %{_userunitdir}/rthemed.service
 %{_userpresetdir}/95-rthemed.preset
+%{python3_sitelib}/rthemed
 
 %files plugin-gtk3
 %{python3_sitelib}/rthemelib/plugins/gtk3.py
