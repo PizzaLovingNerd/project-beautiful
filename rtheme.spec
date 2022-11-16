@@ -113,6 +113,7 @@ cp rthemelib/__main__.py %{buildroot}%{_bindir}/rthemelib
 %{python3_sitelib}/rthemelib
 %{_datadir}/rthemes
 %{_datadir}/glib-2.0/schemas/io.risi.rtheme.gschema.xml
+%{_bindir}/rthemelib
 
 %post d
 %systemd_user_post rthemed.service
