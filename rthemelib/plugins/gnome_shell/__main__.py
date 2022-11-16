@@ -15,6 +15,7 @@ CSS_DIR_ = f"{HOME_}/.config/rtheme/shell"
 CSS_FILE_ = f"{CSS_DIR_}/.config/rtheme/shell/shell.css"
 DATA_ = os.path.join(os.path.dirname(__file__), "data")
 automatic = constants.automatic
+custom_properties = constants.custom_properties
 
 
 class Plugin(pm.Plugin):
@@ -24,7 +25,7 @@ class Plugin(pm.Plugin):
         self.description = "A plugin for gnome-shell. Requires sassc and rtheme gnome extension to be enabled."
         self.version = "43"
         self.author = "PizzaLovingNerd"
-        self.plugin_properties = list(automatic.keys())
+        self.plugin_properties = list(automatic.keys()) + list(custom_properties.keys())
 
     def on_load(self):  # Runs when the plugin is loaded
         pass
@@ -73,11 +74,10 @@ class Plugin(pm.Plugin):
         # Getting hex for icon color
         icon_color = Gdk.RGBA()
         patch_icons = True
-        if "gnome-shell" in subvariant.plugin_properties and \
-                "accent_fg_color_dark" in subvariant.plugin_properties["gnome-shell"]:
-            icon_color.parse(subvariant.plugin_properties["gnome-shell"]["accent_fg_color_dark"])
+        if "accent_fg_color_dark" in subvariant.plugin_properties:
+            icon_color.parse(subvariant.plugin_properties["accent_bg_color_dark"])
         elif "accent_fg_color_dark" in generated_properties:
-            icon_color.parse(generated_properties["accent_fg_color_dark"])
+            icon_color.parse(generated_properties["accent_bg_color_dark"])
         else:
             patch_icons = False
 
@@ -94,9 +94,8 @@ class Plugin(pm.Plugin):
         with open(f"{CSS_DIR_}/gnome-shell-sass/_colors.scss", "r") as f:
             contents = f.read()
             for prop in automatic:
-                if "gnome-shell" in subvariant.plugin_properties and \
-                        prop in subvariant.plugin_properties["gnome-shell"]:
-                    contents = contents.replace(f"**{prop}**", subvariant.plugin_properties["gnome-shell"][prop])
+                if prop in subvariant.plugin_properties:
+                    contents = contents.replace(f"**{prop}**", subvariant.plugin_properties[prop])
                 elif automatic[prop][0] in generated_properties:
                     contents = contents.replace(f"**{prop}**", generated_properties[automatic[prop][0]])
                 else:
@@ -109,10 +108,23 @@ class Plugin(pm.Plugin):
             ["sassc", "-a", f"{CSS_DIR_}/gnome-shell.scss", "gnome-shell.css"], cwd=CSS_DIR_
         )
 
-
         # Setting rtheme to use colors icons
         with open(f"{CSS_DIR_}/rtheme.css", "r") as f:
             contents = f.read()
             contents = contents.replace("**", CSS_DIR_)
         with open(f"{CSS_DIR_}/rtheme.css", "w") as f:
             f.write(contents)
+
+        # Custom properties
+        for prop in custom_properties:
+            if prop in subvariant.plugin_properties:
+                with open(f"{CSS_DIR_}/rtheme.css", "a") as f:
+                    f.write(
+                        "\n\n" + custom_properties[prop].replace(
+                            f"**{prop}**",
+                            subvariant.plugin_properties[prop]
+                        )
+                    )
+        if "custom_css" in subvariant.plugin_properties:
+            with open(f"{CSS_DIR_}/rtheme.css", "a") as f:
+                f.write("\n\n" + subvariant.plugin_properties["custom_css"])

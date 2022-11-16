@@ -62,6 +62,13 @@ main:
         success_fg_color: "#ffffff"
         warning_fg_color: "rgba(0, 0, 0, 0.8)"
         error_fg_color: "#ffffff"
+        plugin_properties:
+            panel_color: "#292929"
+            custom_css: |
+                #dash .dash-background {
+                    background-color: transparent;}
+                #overviewGroup {
+                    background-color: #292929; }
 blue:
     light:
         accent_color: "#1c71d8"

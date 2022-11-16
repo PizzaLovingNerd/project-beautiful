@@ -65,3 +65,10 @@ automatic = {
     "active_fg_color_light": (None, "darken($fg_color, 5%)"),
     "active_fg_color_dark": (None, "lighten($fg_color, 12%)"),
 }
+
+custom_properties = {}
+custom_properties["panel_color"] = """#panel {
+    background-color: **panel_color**;}
+#panel.unlock-screen, #panel.login-screen, #panel:overview {
+    background-color: transparent;}
+"""
