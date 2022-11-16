@@ -87,10 +87,10 @@ cp data/io.risi.rtheme.gschema.xml %{buildroot}%{_datadir}/glib-2.0/schemas/io.r
 cp data/io.risi.rthemed.desktop %{buildroot}%{_datadir}/applications
 
 # SystemD
-mkdir -p %{bootroot}%{_userunitdir}
+mkdir -p %{buildroot}%{_userunitdir}
 mkdir -p %{buildroot}%{_userpresetdir}
-cp -a rthemed/systemd/rthemed.service %{buildroot}%{_userunitdir}/rthemed.service
-cp -a rthemed/systemd/95-rthemed.preset %{buildroot}%{_userpresetdir}/95-rthemed.preset
+cp -a rthemed/systemd/rthemed.service %{buildroot}%{_userunitdir}
+cp -a rthemed/systemd/95-rthemed.preset %{buildroot}%{_userpresetdir}
 
 # Binaries
 mkdir %{buildroot}%{_bindir}
