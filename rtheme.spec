@@ -1,6 +1,6 @@
 Name:           rtheme
 Version:        0.2
-Release:        17%{?dist}
+Release:        18%{?dist}
 Summary:        rtheme is a theme manager for the Linux desktop
 
 License:        GPL v3
@@ -95,19 +95,19 @@ cp -a themes %{buildroot}%{_datadir}/rthemes
 # Data
 mkdir -p %{buildroot}%{_datadir}/glib-2.0/schemas/
 mkdir -p %{buildroot}%{_datadir}/applications
-install -m 755 data/io.risi.rtheme.gschema.xml %{buildroot}%{_datadir}/glib-2.0/schemas/io.risi.rtheme.gschema.xml
-install -m 755 data/io.risi.rthemed.desktop %{buildroot}%{_datadir}/applications
+install -m 0755 data/io.risi.rtheme.gschema.xml %{buildroot}%{_datadir}/glib-2.0/schemas/io.risi.rtheme.gschema.xml
+install -m 0755 data/io.risi.rthemed.desktop %{buildroot}%{_datadir}/applications
 
 # SystemD
 mkdir -p %{buildroot}%{_userunitdir}
 mkdir -p %{buildroot}%{_userpresetdir}
-install -m 755 rthemed/systemd/rthemed.service %{buildroot}%{_userunitdir}
-install -m 755 rthemed/systemd/95-rthemed.preset %{buildroot}%{_userpresetdir}
+install -m 0755 rthemed/systemd/rthemed.service %{buildroot}%{_userunitdir}
+install -m 0755 rthemed/systemd/95-rthemed.preset %{buildroot}%{_userpresetdir}
 
 # Binaries
 mkdir %{buildroot}%{_bindir}
-install -m 755 rthemed/__main__.py %{buildroot}%{_bindir}/rthemed
-install -m 755 rthemelib/__main__.py %{buildroot}%{_bindir}/rthemelib
+install -m 0755 rthemed/__main__.py %{buildroot}%{_bindir}/rthemed
+install -m 0755 rthemelib/__main__.py %{buildroot}%{_bindir}/rthemelib
 
 %files lib
 %{python3_sitelib}/rthemelib
