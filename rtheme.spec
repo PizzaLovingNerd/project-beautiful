@@ -82,7 +82,7 @@ cp -a themes %{buildroot}%{_datadir}/rthemes
 
 # Data
 mkdir -p %{buildroot}%{_datadir}/glib-2.0/schemas/
-mkdir -p
+mkdir -p %{buildroot}%{_datadir}/applications
 cp data/io.risi.rtheme.gschema.xml %{buildroot}%{_datadir}/glib-2.0/schemas/io.risi.rtheme.gschema.xml
 cp data/io.risi.rthemed.desktop %{buildroot}%{_datadir}/applications
 
