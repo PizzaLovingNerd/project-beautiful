@@ -71,6 +71,18 @@ Adds support for GNOME Shell
 %build
 %install
 
+# Removing meson stuff
+rm rthemed/meson.build
+rm rthemed/rthemed.in
+rm rthemed/systemd/meson.build
+rm rthemelib/meson.build
+rm rthemelib/plugins/meson.build
+rm rthemelib/plugins/gnome_shell/meson.build
+rm themes/meson.build
+
+# Removing template
+rm themes/theme_template.yml
+
 # Python Libraries
 mkdir -p %{buildroot}%{python3_sitelib}
 cp -a rthemelib %{buildroot}%{python3_sitelib}
