@@ -69,10 +69,33 @@ Adds support for GNOME Shell
 %prep
 %autosetup -n rtheme-main
 %build
-meson build --prefix=%{_exec_prefix}
-
 %install
-%meson_install -C build
+
+# Python Libraries
+mkdir -p %{buildroot}%{python3_sitelib}
+cp -a rthemelib %{buildroot}%{python3_sitelib}
+cp -a rthemed %{buildroot}%{python3_sitelib}
+
+# Themes
+mkdir -p %{buildroot}%{_datadir}
+cp -a themes %{buildroot}%{_datadir}/rthemes
+
+# Data
+mkdir -p %{buildroot}%{_datadir}/glib-2.0/schemas/
+mkdir -p
+cp data/io.risi.rtheme.gschema.xml %{buildroot}%{_datadir}/glib-2.0/schemas/io.risi.rtheme.gschema.xml
+cp data/io.risi.rthemed.desktop %{buildroot}%{_datadir}/applications
+
+# SystemD
+mkdir -p %{bootroot}%{_userunitdir}
+mkdir -p %{buildroot}%{_userpresetdir}
+cp -a rthemed/systemd/rthemed.service %{buildroot}%{_userunitdir}/rthemed.service
+cp -a rthemed/systemd/95-rthemed.preset %{buildroot}%{_userpresetdir}/95-rthemed.preset
+
+# Binaries
+mkdir %{buildroot}%{_bindir}
+cp rthemed/__main__.py %{buildroot}%{_bindir}/rthemed
+cp rthemelib/__main__.py %{buildroot}%{_bindir}/rthemelib
 
 %files lib
 %{python3_sitelib}/rthemelib
@@ -86,7 +109,6 @@ meson build --prefix=%{_exec_prefix}
 %systemd_user_preun rthemed.service
 
 %files d
-%{_datadir}/rthemed
 %{_datadir}/applications/io.risi.rthemed.desktop
 %{_bindir}/rthemed
 %{_userunitdir}/rthemed.service
