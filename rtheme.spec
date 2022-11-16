@@ -133,7 +133,7 @@ cp rthemelib/__main__.py %{buildroot}%{_bindir}/rthemelib
 %{python3_sitelib}/rthemelib/plugins/gtk4.py
 
 %files plugin-gnome-shell
-%{python3_sitelib}/rthemelib/plugins/gnome-shell
+%{python3_sitelib}/rthemelib/plugins/gnome_shell
 
 %changelog
 * Sun Oct 9 2022 PizzaLovingNerd
