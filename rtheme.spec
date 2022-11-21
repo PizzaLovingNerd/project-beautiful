@@ -1,6 +1,6 @@
 Name:           rtheme
 Version:        0.2
-Release:        22%{?dist}
+Release:        23%{?dist}
 Summary:        rtheme is a theme manager for the Linux desktop
 
 License:        GPL v3
@@ -110,7 +110,7 @@ install -m 0755 rthemed/__main__.py %{buildroot}%{_bindir}/rthemed
 install -m 0755 rthemelib/__main__.py %{buildroot}%{_bindir}/rthemelib
 
 %files lib
-%{python3_sitelib}/rthemelib
+%{python3_sitelib}/rthemelib/*.py
 %{_datadir}/rthemes
 %{_datadir}/glib-2.0/schemas/io.risi.rtheme.gschema.xml
 %{_bindir}/rthemelib
