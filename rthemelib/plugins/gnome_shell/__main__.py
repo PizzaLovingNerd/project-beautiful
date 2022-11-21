@@ -36,95 +36,96 @@ class Plugin(pm.Plugin):
 
     def apply_theme(self, subvariant: tc.Subvariant):  # Ran when applying a gnome43.
         self.purge_theme()
-        if not os.path.exists(CSS_DIR_):
-            os.makedirs(CSS_DIR_)
+        if not subvariant.parent_variant.theme.name == "adwaita":
+            if not os.path.exists(CSS_DIR_):
+                os.makedirs(CSS_DIR_)
 
-        # Getting parent variant
-        variant = subvariant.parent_variant
-        dark_subvariant = variant.get_subvariant_from_name("dark")
-        light_subvariant = variant.get_subvariant_from_name("light")
-        generated_properties = {}
+            # Getting parent variant
+            variant = subvariant.parent_variant
+            dark_subvariant = variant.get_subvariant_from_name("dark")
+            light_subvariant = variant.get_subvariant_from_name("light")
+            generated_properties = {}
 
-        # Getting automatic properties
-        if dark_subvariant is not None and light_subvariant is None:
-            for prop in dark_subvariant.properties:
-                if dark_subvariant.properties[prop] is not None:
-                    generated_properties[f"{prop}_dark"] = dark_subvariant.properties[prop]
-                    generated_properties[f"{prop}_light"] = dark_subvariant.properties[prop]
-        elif dark_subvariant is None and light_subvariant is not None:
-            for prop in light_subvariant.properties:
-                if light_subvariant.properties[prop] is not None:
-                    generated_properties[f"{prop}_dark"] = light_subvariant.properties[prop]
-                    generated_properties[f"{prop}_light"] = light_subvariant.properties[prop]
-        else:
-            for prop in dark_subvariant.properties:
-                if dark_subvariant.properties[prop] is not None:
-                    generated_properties[f"{prop}_dark"] = dark_subvariant.properties[prop]
-            for prop in light_subvariant.properties:
-                if light_subvariant.properties[prop] is not None:
-                    generated_properties[f"{prop}_light"] = light_subvariant.properties[prop]
+            # Getting automatic properties
+            if dark_subvariant is not None and light_subvariant is None:
+                for prop in dark_subvariant.properties:
+                    if dark_subvariant.properties[prop] is not None:
+                        generated_properties[f"{prop}_dark"] = dark_subvariant.properties[prop]
+                        generated_properties[f"{prop}_light"] = dark_subvariant.properties[prop]
+            elif dark_subvariant is None and light_subvariant is not None:
+                for prop in light_subvariant.properties:
+                    if light_subvariant.properties[prop] is not None:
+                        generated_properties[f"{prop}_dark"] = light_subvariant.properties[prop]
+                        generated_properties[f"{prop}_light"] = light_subvariant.properties[prop]
+            else:
+                for prop in dark_subvariant.properties:
+                    if dark_subvariant.properties[prop] is not None:
+                        generated_properties[f"{prop}_dark"] = dark_subvariant.properties[prop]
+                for prop in light_subvariant.properties:
+                    if light_subvariant.properties[prop] is not None:
+                        generated_properties[f"{prop}_light"] = light_subvariant.properties[prop]
 
-        # Copying theme-template to directory
-        shutil.copytree(
-            f"{DATA_}/gnome43",
-            CSS_DIR_, dirs_exist_ok=True
-        )
+            # Copying theme-template to directory
+            shutil.copytree(
+                f"{DATA_}/gnome43",
+                CSS_DIR_, dirs_exist_ok=True
+            )
 
-        # Updating icons
-        # Getting hex for icon color
-        icon_color = Gdk.RGBA()
-        patch_icons = True
-        if "accent_fg_color_dark" in subvariant.plugin_properties:
-            icon_color.parse(subvariant.plugin_properties["accent_bg_color_dark"])
-        elif "accent_fg_color_dark" in generated_properties:
-            icon_color.parse(generated_properties["accent_bg_color_dark"])
-        else:
-            patch_icons = False
+            # Updating icons
+            # Getting hex for icon color
+            icon_color = Gdk.RGBA()
+            patch_icons = True
+            if "accent_fg_color_dark" in subvariant.plugin_properties:
+                icon_color.parse(subvariant.plugin_properties["accent_bg_color_dark"])
+            elif "accent_fg_color_dark" in generated_properties:
+                icon_color.parse(generated_properties["accent_bg_color_dark"])
+            else:
+                patch_icons = False
 
-        # Writing patched icons
-        if patch_icons:
-            for icon in os.listdir(CSS_DIR_):
-                if icon.endswith(".svg"):
-                    with open(f"{CSS_DIR_}/{icon}", "r") as f:
-                        contents = f.read()
-                        contents = contents.replace("#3584e4", icon_color.to_string())
-                    with open(f"{CSS_DIR_}/{icon}", "w") as f:
-                        f.write(contents)
+            # Writing patched icons
+            if patch_icons:
+                for icon in os.listdir(CSS_DIR_):
+                    if icon.endswith(".svg"):
+                        with open(f"{CSS_DIR_}/{icon}", "r") as f:
+                            contents = f.read()
+                            contents = contents.replace("#3584e4", icon_color.to_string())
+                        with open(f"{CSS_DIR_}/{icon}", "w") as f:
+                            f.write(contents)
 
-        with open(f"{CSS_DIR_}/gnome-shell-sass/_colors.scss", "r") as f:
-            contents = f.read()
-            for prop in automatic:
+            with open(f"{CSS_DIR_}/gnome-shell-sass/_colors.scss", "r") as f:
+                contents = f.read()
+                for prop in automatic:
+                    if prop in subvariant.plugin_properties:
+                        contents = contents.replace(f"**{prop}**", subvariant.plugin_properties[prop])
+                    elif automatic[prop][0] in generated_properties:
+                        contents = contents.replace(f"**{prop}**", generated_properties[automatic[prop][0]])
+                    else:
+                        contents = contents.replace(f"**{prop}**", automatic[prop][1])
+            with open(f"{CSS_DIR_}/gnome-shell-sass/_colors.scss", "w") as f:
+                f.write(contents)
+
+            # Compiling sass
+            subprocess.run(
+                ["sassc", "-a", f"{CSS_DIR_}/gnome-shell.scss", "gnome-shell.css"], cwd=CSS_DIR_
+            )
+
+            # Setting rtheme to use colors icons
+            with open(f"{CSS_DIR_}/rtheme.css", "r") as f:
+                contents = f.read()
+                contents = contents.replace("**", CSS_DIR_)
+            with open(f"{CSS_DIR_}/rtheme.css", "w") as f:
+                f.write(contents)
+
+            # Custom properties
+            for prop in custom_properties:
                 if prop in subvariant.plugin_properties:
-                    contents = contents.replace(f"**{prop}**", subvariant.plugin_properties[prop])
-                elif automatic[prop][0] in generated_properties:
-                    contents = contents.replace(f"**{prop}**", generated_properties[automatic[prop][0]])
-                else:
-                    contents = contents.replace(f"**{prop}**", automatic[prop][1])
-        with open(f"{CSS_DIR_}/gnome-shell-sass/_colors.scss", "w") as f:
-            f.write(contents)
-
-        # Compiling sass
-        subprocess.run(
-            ["sassc", "-a", f"{CSS_DIR_}/gnome-shell.scss", "gnome-shell.css"], cwd=CSS_DIR_
-        )
-
-        # Setting rtheme to use colors icons
-        with open(f"{CSS_DIR_}/rtheme.css", "r") as f:
-            contents = f.read()
-            contents = contents.replace("**", CSS_DIR_)
-        with open(f"{CSS_DIR_}/rtheme.css", "w") as f:
-            f.write(contents)
-
-        # Custom properties
-        for prop in custom_properties:
-            if prop in subvariant.plugin_properties:
-                with open(f"{CSS_DIR_}/rtheme.css", "a") as f:
-                    f.write(
-                        "\n\n" + custom_properties[prop].replace(
-                            f"**{prop}**",
-                            subvariant.plugin_properties[prop]
+                    with open(f"{CSS_DIR_}/rtheme.css", "a") as f:
+                        f.write(
+                            "\n\n" + custom_properties[prop].replace(
+                                f"**{prop}**",
+                                subvariant.plugin_properties[prop]
+                            )
                         )
-                    )
-        if "custom_css" in subvariant.plugin_properties:
-            with open(f"{CSS_DIR_}/rtheme.css", "a") as f:
-                f.write("\n\n" + subvariant.plugin_properties["custom_css"])
+            if "custom_css" in subvariant.plugin_properties:
+                with open(f"{CSS_DIR_}/rtheme.css", "a") as f:
+                    f.write("\n\n" + subvariant.plugin_properties["custom_css"])
