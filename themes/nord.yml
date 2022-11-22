@@ -42,7 +42,7 @@ main:
     global:
         dialog_bg_color: "@popover_bg_color"
         dialog_fg_color: "@popover_fg_color"
-        warning_bg_color: #CB4B16"
+        warning_bg_color: "#CB4B16"
         warning_fg_color: "#eee8d5"
         warning_color: "#CB4B16"
         error_bg_color: "#DC322F"
