@@ -157,10 +157,10 @@ each subvariant can have. Please refer to the example above for a better underst
 
 ### Flags
 Flags are used to specific what themes are applied. The current flags are:
-    * light
-    * dark
-    * light-hc
-    * dark-hc
+* light
+* dark
+* light-hc
+* dark-hc
 At the moment, the light and dark flags are used to determine what modes a theme supports.
 The light-hc and dark-hc flags are used to determine if a theme supports high contrast mode,
 although high contrast support is still in development, so this is mainly for future use.
@@ -178,12 +178,12 @@ Each variant than contains different subvariants for different modes.
 ### Subvariants
 Subvariants are used to specify what colors are used for each mode.
 The current subvariants are:
-    * global
-    * light
-    * dark
-    * global-hc
-    * light-hc
-    * dark-hc
+* global
+* light
+* dark
+* global-hc
+* light-hc
+* dark-hc
 The global subvariant is used to specify colors that are set in both the light and dark subvariants.
 Then the light and dark subvariants are applied on top of the global subvariant.
 
@@ -192,37 +192,37 @@ high contrast mode is still in development, so this is mainly for future-proofin
 
 ### Properties:
 Each subvariant has a subset of properties that determine theme colors. The default properties are:
-    * accent_color
-    * destructive_color
-    * destructive_bg_color
-    * success_color
-    * success_bg_color
-    * warning_color
-    * warning_bg_color
-    * error_color
-    * error_bg_color
-    * window_bg_color
-    * window_fg_color
-    * view_bg_color
-    * view_fg_color
-    * headerbar_bg_color
-    * headerbar_fg_color
-    * headerbar_border_color
-    * headerbar_backdrop_color
-    * headerbar_shade_color
-    * card_bg_color
-    * card_fg_color
-    * card_shade_color
-    * popover_bg_color
-    * popover_fg_color
-    * shade_color
-    * scrollbar_outline_color
-    * accent_bg_color
-    * accent_fg_color
-    * destructive_fg_color
-    * success_fg_color
-    * warning_fg_color
-    * error_fg_color
+* accent_color
+* destructive_color
+* destructive_bg_color
+* success_color
+* success_bg_color
+* warning_color
+* warning_bg_color
+* error_color
+* error_bg_color
+* window_bg_color
+* window_fg_color
+* view_bg_color
+* view_fg_color
+* headerbar_bg_color
+* headerbar_fg_color
+* headerbar_border_color
+* headerbar_backdrop_color
+* headerbar_shade_color
+* card_bg_color
+* card_fg_color
+* card_shade_color
+* popover_bg_color
+* popover_fg_color
+* shade_color
+* scrollbar_outline_color
+* accent_bg_color
+* accent_fg_color
+* destructive_fg_color
+* success_fg_color
+* warning_fg_color
+* error_fg_color
 These default properties are based on Libadwaita's named color palette. You can find more information here:
 https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/named-colors.html
 
@@ -245,7 +245,7 @@ plugin_properties:
 ## gtk3 and gtk4:
 These plugins are used to set the colors for GTK3 and GTK4 applications.
 These plugins automatically generate a theme from the default properties, and only have 1 custom plugin property:
-    * `custom_css`
+* `custom_css`
 This custom_css property is used to add additional CSS to the theme.
 
 ## gnome_shell:
@@ -257,71 +257,71 @@ This attempts to generate a theme based on the dark subvariant, but will fallbac
 there is no dark subvariant. It also uses the light subvariant if you run gnome-classic.
 
 This plugin's only 2 custom plugin properties are:
-    * `panel_color`
-    * `custom_css`
+* `panel_color`
+* `custom_css`
 However you can also override the properties set by the default properties using the following custom properties.
-    * `dark_base_color`
-    * `light_base_color`
-    * `bg_color_light`
-    * `bg_color_dark`
-    * `fg_color_light`
-    * `fg_color_dark`
-    * `selected_fg_color`
-    * `selected_bg_color`
-    * `selected_borders_color_light`
-    * `selected_borders_color_dark`
-    * `borders_color_light`
-    * `borders_color_dark`
-    * `borders_edge_light`
-    * `borders_edge_dark`
-    * `link_color_light`
-    * `link_color_dark`
-    * `link_visited_color_light`
-    * `link_visited_color_dark`
-    * `warning_color_light`
-    * `warning_color_dark`
-    * `error_color_light`
-    * `error_color_dark`
-    * `success_color_light`
-    * `success_color_dark`
-    * `destructive_color`
-    * `osd_fg_color`
-    * `osd_bg_color`
-    * `osd_insensitive_bg_color`
-    * `osd_insensitive_fg_color_light`
-    * `osd_insensitive_fg_color_dark`
-    * `osd_borders_color`
-    * `osd_outer_borders_color`
-    * `shadow_color_light`
-    * `shadow_color_dark`
-    * `card_bg_color_light`
-    * `card_bg_color_dark`
-    * `card_outer_borders_color`
-    * `bubble_bubble_color_light`
-    * `bubble_bubble_color_dark`
-    * `system_bg_color`
-    * `insensitive_fg_color`
-    * `insensitive_bg_color`
-    * `insensitive_borders_color`
-    * `backdrop_base_color_light`
-    * `backdrop_base_color_dark`
-    * `backdrop_bg_color`
-    * `backdrop_fg_color`
-    * `backdrop_insensitive_fg_color_light`
-    * `backdrop_insensitive_fg_color_dark`
-    * `backdrop_borders_color`
-    * `backdrop_dark_fill`
-    * `checked_bg_color_light`
-    * `checked_bg_color_dark`
-    * `checked_fg_color_light`
-    * `checked_fg_color_dark`
-    * `hover_bg_color_light`
-    * `hover_bg_color_dark`
-    * `hover_fg_color_light`
-    * `hover_fg_color_dark`
-    * `active_bg_color_light`
-    * `active_bg_color_dark`
-    * `active_fg_color_light`
-    * `active_fg_color_dark`
+* `dark_base_color`
+* `light_base_color`
+* `bg_color_light`
+* `bg_color_dark`
+* `fg_color_light`
+* `fg_color_dark`
+* `selected_fg_color`
+* `selected_bg_color`
+* `selected_borders_color_light`
+* `selected_borders_color_dark`
+* `borders_color_light`
+* `borders_color_dark`
+* `borders_edge_light`
+* `borders_edge_dark`
+* `link_color_light`
+* `link_color_dark`
+* `link_visited_color_light`
+* `link_visited_color_dark`
+* `warning_color_light`
+* `warning_color_dark`
+* `error_color_light`
+* `error_color_dark`
+* `success_color_light`
+* `success_color_dark`
+* `destructive_color`
+* `osd_fg_color`
+* `osd_bg_color`
+* `osd_insensitive_bg_color`
+* `osd_insensitive_fg_color_light`
+* `osd_insensitive_fg_color_dark`
+* `osd_borders_color`
+* `osd_outer_borders_color`
+* `shadow_color_light`
+* `shadow_color_dark`
+* `card_bg_color_light`
+* `card_bg_color_dark`
+* `card_outer_borders_color`
+* `bubble_bubble_color_light`
+* `bubble_bubble_color_dark`
+* `system_bg_color`
+* `insensitive_fg_color`
+* `insensitive_bg_color`
+* `insensitive_borders_color`
+* `backdrop_base_color_light`
+* `backdrop_base_color_dark`
+* `backdrop_bg_color`
+* `backdrop_fg_color`
+* `backdrop_insensitive_fg_color_light`
+* `backdrop_insensitive_fg_color_dark`
+* `backdrop_borders_color`
+* `backdrop_dark_fill`
+* `checked_bg_color_light`
+* `checked_bg_color_dark`
+* `checked_fg_color_light`
+* `checked_fg_color_dark`
+* `hover_bg_color_light`
+* `hover_bg_color_dark`
+* `hover_fg_color_light`
+* `hover_fg_color_dark`
+* `active_bg_color_light`
+* `active_bg_color_dark`
+* `active_fg_color_light`
+* `active_fg_color_dark`
 
 You can also disable shell theming by adding the `no_gnome_shell` flag to the theme at the top.
