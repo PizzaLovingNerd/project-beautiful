@@ -157,10 +157,10 @@ each subvariant can have. Please refer to the example above for a better underst
 
 ### Flags
 Flags are used to specific what themes are applied. The current flags are:
-* light
-* dark
-* light-hc
-* dark-hc
+* `light`
+* `dark`
+* `light-hc`
+* `dark-hc`
 At the moment, the light and dark flags are used to determine what modes a theme supports.
 The light-hc and dark-hc flags are used to determine if a theme supports high contrast mode,
 although high contrast support is still in development, so this is mainly for future use.
@@ -178,12 +178,12 @@ Each variant than contains different subvariants for different modes.
 ### Subvariants
 Subvariants are used to specify what colors are used for each mode.
 The current subvariants are:
-* global
-* light
-* dark
-* global-hc
-* light-hc
-* dark-hc
+* `global`
+* `light`
+* `dark`
+* `global-hc`
+* `light-hc`
+* `dark-hc`
 The global subvariant is used to specify colors that are set in both the light and dark subvariants.
 Then the light and dark subvariants are applied on top of the global subvariant.
 
@@ -192,37 +192,38 @@ high contrast mode is still in development, so this is mainly for future-proofin
 
 ### Properties:
 Each subvariant has a subset of properties that determine theme colors. The default properties are:
-* accent_color
-* destructive_color
-* destructive_bg_color
-* success_color
-* success_bg_color
-* warning_color
-* warning_bg_color
-* error_color
-* error_bg_color
-* window_bg_color
-* window_fg_color
-* view_bg_color
-* view_fg_color
-* headerbar_bg_color
-* headerbar_fg_color
-* headerbar_border_color
-* headerbar_backdrop_color
-* headerbar_shade_color
-* card_bg_color
-* card_fg_color
-* card_shade_color
-* popover_bg_color
-* popover_fg_color
-* shade_color
-* scrollbar_outline_color
-* accent_bg_color
-* accent_fg_color
-* destructive_fg_color
-* success_fg_color
-* warning_fg_color
-* error_fg_color
+* `accent_color`
+* `destructive_color`
+* `destructive_bg_color`
+* `success_color`
+* `success_bg_color`
+* `warning_color`
+* `warning_bg_color`
+* `error_color`
+* `error_bg_color`
+* `window_bg_color`
+* `window_fg_color`
+* `view_bg_color`
+* `view_fg_color`
+* `headerbar_bg_color`
+* `headerbar_fg_color`
+* `headerbar_border_color`
+* `headerbar_backdrop_color`
+* `headerbar_shade_color`
+* `card_bg_color`
+* `card_fg_color`
+* `card_shade_color`
+* `popover_bg_color`
+* `popover_fg_color`
+* `shade_color`
+* `scrollbar_outline_color`
+* `accent_bg_color`
+* `accent_fg_color`
+* `destructive_fg_color`
+* `success_fg_color`
+* `warning_fg_color`
+* `error_fg_color`
+
 These default properties are based on Libadwaita's named color palette. You can find more information here:
 https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/named-colors.html
 
