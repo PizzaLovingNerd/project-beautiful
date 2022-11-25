@@ -161,6 +161,7 @@ Flags are used to specific what themes are applied. The current flags are:
 * `dark`
 * `light-hc`
 * `dark-hc`
+
 At the moment, the light and dark flags are used to determine what modes a theme supports.
 The light-hc and dark-hc flags are used to determine if a theme supports high contrast mode,
 although high contrast support is still in development, so this is mainly for future use.
@@ -184,6 +185,7 @@ The current subvariants are:
 * `global-hc`
 * `light-hc`
 * `dark-hc`
+* 
 The global subvariant is used to specify colors that are set in both the light and dark subvariants.
 Then the light and dark subvariants are applied on top of the global subvariant.
 
@@ -260,7 +262,8 @@ there is no dark subvariant. It also uses the light subvariant if you run gnome-
 This plugin's only 2 custom plugin properties are:
 * `panel_color`
 * `custom_css`
-However you can also override the properties set by the default properties using the following custom properties.
+
+However, you can also override the properties set by the default properties using the following custom properties.
 * `dark_base_color`
 * `light_base_color`
 * `bg_color_light`
