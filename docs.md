@@ -20,7 +20,6 @@ $ sudo meson install -C build --prefix=/usr
 # Using rtheme
 
 ## rthemed
-##### We recommend only doing this if you are on a systemd-free distro, or you are testing.
 
 ### Start with systemd
 ```bash
