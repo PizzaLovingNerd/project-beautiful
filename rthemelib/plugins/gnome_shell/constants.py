@@ -70,8 +70,3 @@ custom_properties["panel_color"] = """#panel {
 #panel.unlock-screen, #panel.login-screen, #panel:overview {
     background-color: transparent;}
 """
-
-l = []
-for key, value in automatic.items():
-    l.append(f"    - `{key}`")
-print("\n".join(l))

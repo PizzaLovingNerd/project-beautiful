@@ -8,6 +8,7 @@
 flags:
     - light
     - dark
+    - no_gnome_shell
 main:
     light:
         accent_color: "#1c71d8"

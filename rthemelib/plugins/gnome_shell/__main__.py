@@ -36,7 +36,7 @@ class Plugin(pm.Plugin):
 
     def apply_theme(self, subvariant: tc.Subvariant):  # Ran when applying a gnome43.
         self.purge_theme()
-        if not subvariant.parent_variant.theme.name == "adwaita":
+        if "no_gnome_shell" not in subvariant.parent_variant.theme.theme_flags:
             if not os.path.exists(CSS_DIR_):
                 os.makedirs(CSS_DIR_)
 
