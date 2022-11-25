@@ -134,13 +134,6 @@ class DaemonBus(object):
         <node>
             <interface name='io.risi.rthemed'>
                 <method name='Start' />
-                <method name='Stop' />
-                <method name='ViewLogs'>
-                    <arg type='as' name='logs' direction='out' />
-                </method>
-                <method name='Status'>
-                    <arg type='(bas)' name='logs' direction='out' />
-                </method>
             </interface>
         </node>
     """

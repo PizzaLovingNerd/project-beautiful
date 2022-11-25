@@ -23,8 +23,6 @@ automatic = {
     "error_color_dark": ("error_bg_color_dark", "red_4"),
     "success_color_light": ("success_bg_color_light", "$green_4"),
     "success_color_dark": ("success_bg_color_dark", "$green_5"),
-    "warning_color_light": ("warning_bg_color_light", "$yellow_5"),
-    "warning_color_dark": ("warning_bg_color_dark", "#cd9309"),
     "destructive_color": (None, "$error_color"),
     "osd_fg_color": ("window_fg_color_dark", "white"),
     "osd_bg_color": ("window_bg_color_dark", "$_dark_base_color"),
@@ -72,3 +70,8 @@ custom_properties["panel_color"] = """#panel {
 #panel.unlock-screen, #panel.login-screen, #panel:overview {
     background-color: transparent;}
 """
+
+l = []
+for key, value in automatic.items():
+    l.append(f"    - `{key}`")
+print("\n".join(l))

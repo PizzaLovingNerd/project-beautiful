@@ -144,15 +144,15 @@ HELP_PROMPT = """rTheme: The easiest solution for theming on Linux.
 [rthemed/rthemelib] help:       Show this help prompt.
 
 DAEMON COMMANDS:
-    rthemed status:             Show the current status of rthemed.
     rthemed start:              Start rthemed
-    rthemed stop:               Stop rthemed
-    rthemed view-logs:           View the full log
+We highly recommend using an init system to start rthemed on boot
+instead of using this command.
 
 THEME COMMANDS:
     rthemelib list-themes:      List all themes
     rthemelib list-variants:    List current theme variants
     rthemelib get-theme-path:   Get the path to the current theme
+    rthemelib apply:            Applies the current theme
 
 Use gsettings to modify the theme settings:
     gsettings set io.risi.rtheme theme-name "rthemed_theme"
