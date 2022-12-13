@@ -17,7 +17,7 @@ class Plugin(pm.Plugin):
         self.plugin_properties = ["custom_css"]
 
     def on_load(self):  # Runs when the plugin is loaded
-        pass
+        print("GTK4 Plugin Loaded")
 
     def purge_theme(self):  # Purges the theme.
         if os.path.exists(CSS_FILE_):
@@ -43,3 +43,4 @@ class Plugin(pm.Plugin):
         for line in lines:
             with open(CSS_FILE_, "a") as f:
                 f.write(f"{line}\n")
+        print("GTK4 theme applied.")

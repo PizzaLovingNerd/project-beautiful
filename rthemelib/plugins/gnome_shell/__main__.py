@@ -28,7 +28,7 @@ class Plugin(pm.Plugin):
         self.plugin_properties = list(automatic.keys()) + list(custom_properties.keys())
 
     def on_load(self):  # Runs when the plugin is loaded
-        pass
+        print("GNOME Plugin Loaded")
 
     def purge_theme(self):  # Purges the gnome43.
         if os.path.exists(CSS_DIR_):
@@ -37,8 +37,8 @@ class Plugin(pm.Plugin):
     def apply_theme(self, subvariant: tc.Subvariant):  # Ran when applying a gnome43.
         self.purge_theme()
         if "no_gnome_shell" not in subvariant.parent_variant.theme.theme_flags:
-            if not os.path.exists(CSS_DIR_):
-                os.makedirs(CSS_DIR_)
+            print("Applying GNOME Shell theme...")
+            os.makedirs(CSS_DIR_, exist_ok=True)
 
             # Getting parent variant
             variant = subvariant.parent_variant
@@ -129,3 +129,4 @@ class Plugin(pm.Plugin):
             if "custom_css" in subvariant.plugin_properties:
                 with open(f"{CSS_DIR_}/rtheme.css", "a") as f:
                     f.write("\n\n" + subvariant.plugin_properties["custom_css"])
+        print("GNOME Shell Theme Applied")
