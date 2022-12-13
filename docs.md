@@ -31,8 +31,7 @@ $ systemctl start --user rthemed
 $ rthemed start
 ```
 
-## Setting a theme
-### Adding a theme
+## Adding a theme
 In order to add a theme, you need to place the theme into a valid directory. These directories include
 * `/usr/share/rthemes` (for system-wide themes)
 * `~/.rthemes` and `~/.local/share/rthemes` (for locally installed themes)
