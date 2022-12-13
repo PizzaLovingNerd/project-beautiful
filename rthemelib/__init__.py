@@ -86,7 +86,7 @@ def get_theme_list() -> list[str]:
         if os.path.isdir(theme_dir):
             for theme in os.listdir(theme_dir):
                 if check_yaml(f"{theme_dir}/{theme}")[0]:
-                    themes.append(theme[:-4])
+                    themes.append(theme.replace(".rtheme", "").replace(".yaml", "").replace(".yml", ""))
     return themes
 
 
