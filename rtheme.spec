@@ -110,7 +110,7 @@ install -m 0755 rthemed/__main__.py %{buildroot}%{_bindir}/rthemed
 install -m 0755 rthemelib/__main__.py %{buildroot}%{_bindir}/rthemelib
 
 %files lib
-%{python3_sitelib}/rthemelib/*.py
+%{python3_sitelib}/rthemelib
 %{_datadir}/rthemes
 %{_datadir}/glib-2.0/schemas/io.risi.rtheme.gschema.xml
 %{_bindir}/rthemelib
