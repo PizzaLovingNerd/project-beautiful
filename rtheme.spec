@@ -132,12 +132,12 @@ install -m 0755 rthemelib/__main__.py %{buildroot}%{_bindir}/rthemelib
 
 %files plugin-gtk3
 %{python3_sitelib}/rthemelib/plugins/gtk3.py
-%{python3_sitelib}/rthemelib/plugins/__pycache__/gtk3.cpython-311.opt-1.pyc
+%{python3_sitelib}/rthemelib/plugins/__pycache__/gtk3.cpython-311.pyc
 %{python3_sitelib}/rthemelib/plugins/__pycache__/gtk3.cpython-311.opt-1.pyc
 
 %files plugin-gtk4
 %{python3_sitelib}/rthemelib/plugins/gtk4.py
-%{python3_sitelib}/rthemelib/plugins/__pycache__/gtk4.cpython-311.opt-1.pyc
+%{python3_sitelib}/rthemelib/plugins/__pycache__/gtk4.cpython-311.pyc
 %{python3_sitelib}/rthemelib/plugins/__pycache__/gtk4.cpython-311.opt-1.pyc
 
 %files plugin-gnome-shell
