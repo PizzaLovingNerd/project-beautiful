@@ -81,7 +81,7 @@ rm rthemelib/plugins/gnome_shell/meson.build
 rm themes/meson.build
 
 # Removing template
-rm themes/theme_template.yml
+rm themes/theme_template.rtheme
 
 # Python Libraries
 mkdir -p %{buildroot}%{python3_sitelib}
@@ -139,7 +139,6 @@ install -m 0755 rthemelib/__main__.py %{buildroot}%{_bindir}/rthemelib
 %{python3_sitelib}/rthemelib/plugins/gtk4.py
 %{python3_sitelib}/rthemelib/plugins/__pycache__/gtk4.cpython-311.opt-1.pyc
 %{python3_sitelib}/rthemelib/plugins/__pycache__/gtk4.cpython-311.opt-1.pyc
-
 
 %files plugin-gnome-shell
 %{python3_sitelib}/rthemelib/plugins/gnome_shell
