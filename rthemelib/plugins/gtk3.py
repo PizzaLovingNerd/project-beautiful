@@ -2,6 +2,12 @@ import rthemelib.plugin_manager as pm
 import rthemelib.theme_classes as tc
 import os
 
+import gi
+gi.require_version("Gio", "2.0")
+from gi.repository import Gio
+
+interface_settings = Gio.Settings.new("org.gnome.desktop.interface")
+
 HOME_ = os.path.expanduser('~')
 CSS_FILE_ = f"{HOME_}/.config/gtk-3.0/gtk.css"
 CSS_DIR_ = f"{HOME_}/.config/gtk-3.0/"
@@ -23,6 +29,17 @@ class Plugin(pm.Plugin):
             os.remove(CSS_FILE_)
 
     def apply_theme(self, subvariant: tc.Subvariant):  # Ran when applying a theme.
+        self.purge_theme()
+        # If the theme is Adwaita, we don't need to do anything.
+        if subvariant.parent_variant.parent_theme.name.lower() == "adwaita":
+            return
+
+        # Apply adw-gtk3 to light or dark mode
+        if interface_settings.get_string("color-scheme") == "prefer-dark":
+            interface_settings.set_string("gtk-theme", "adw-gtk3-dark")
+        else:
+            interface_settings.set_string("gtk-theme", "adw-gtk3")
+
         if not os.path.exists(CSS_DIR_):
             os.mkdir(CSS_DIR_)
 

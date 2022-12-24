@@ -1,6 +1,6 @@
 Name:           rtheme
-Version:        0.2
-Release:        23%{?dist}
+Version:        0.3
+Release:        24%{?dist}
 Summary:        rtheme is a theme manager for the Linux desktop
 
 License:        GPL v3
@@ -110,8 +110,9 @@ install -m 0755 rthemed/__main__.py %{buildroot}%{_bindir}/rthemed
 install -m 0755 rthemelib/__main__.py %{buildroot}%{_bindir}/rthemelib
 
 %files lib
-%{python3_sitelib}/rthemelib
-%{_datadir}/rthemes
+%{python3_sitelib}/rthemelib/*.py
+%{python3_sitelib}/rthemelib/__pycache__/*.pyc
+%dir %{_datadir}/rthemes
 %{_datadir}/glib-2.0/schemas/io.risi.rtheme.gschema.xml
 %{_bindir}/rthemelib
 
@@ -126,7 +127,7 @@ install -m 0755 rthemelib/__main__.py %{buildroot}%{_bindir}/rthemelib
 %{_bindir}/rthemed
 %{_userunitdir}/rthemed.service
 %{_userpresetdir}/95-rthemed.preset
-%{python3_sitelib}/rthemed
+%dir %{python3_sitelib}/rthemed
 
 %files plugin-gtk3
 %{python3_sitelib}/rthemelib/plugins/gtk3.py
@@ -135,7 +136,7 @@ install -m 0755 rthemelib/__main__.py %{buildroot}%{_bindir}/rthemelib
 %{python3_sitelib}/rthemelib/plugins/gtk4.py
 
 %files plugin-gnome-shell
-%{python3_sitelib}/rthemelib/plugins/gnome_shell
+%dir %{python3_sitelib}/rthemelib/plugins/gnome_shell
 
 %changelog
 * Sun Oct 9 2022 PizzaLovingNerd
