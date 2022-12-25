@@ -20,7 +20,7 @@ class PluginManager:
         self.load_plugins()
 
     def load_plugins(self):
-        plugin_dirs = [x for x in SITE_DIRS if (x / "rthemelib" / "plugins").is_dir()]
+        plugin_dirs = [x for x in SITE_DIRS if (Path(x) / "rthemelib" / "plugins").is_dir()]
         for directory in plugin_dirs:
             plugin_path = Path(directory) / "rthemelib" / "plugins"
             for plugin in plugin_path.glob("*.py"):
@@ -33,6 +33,7 @@ class PluginManager:
             for possible_plugin in plugin_path.iterdir():
                 if (possible_plugin / "__main__.py").is_file():
                     if possible_plugin.name in self.enabled_plugins:
+                        print(possible_plugin.name, self.enabled_plugins)
                         plugin_module = importlib.import_module(
                             f"rthemelib.plugins.{possible_plugin.name}.__main__"
                         )
@@ -79,7 +80,7 @@ def get_plugins():
 
 def get_available_plugins():
     plugins = []
-    plugin_dirs = [x for x in SITE_DIRS if (x / "rthemelib" / "plugins").is_dir()]
+    plugin_dirs = [x for x in SITE_DIRS if (Path(x) / "rthemelib" / "plugins").is_dir()]
     for directory in plugin_dirs:
         plugin_path = Path(directory) / "rthemelib" / "plugins"
         for plugin in plugin_path.glob("*.py"):

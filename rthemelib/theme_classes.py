@@ -1,4 +1,5 @@
 import yaml
+from pathlib import Path
 
 
 class Subvariant:
@@ -81,6 +82,7 @@ class Theme:
         self.theme_file = ""  # Path to the theme file.
         self.theme_flags = []  # List of flags of the theme.
         self.theme_data = {}  # Data loaded from the theme
+        self.name = Path(self.theme_file).stem  # Name of the theme.
 
     def parse_yaml(self, file_path: str):
         """Parses the theme file."""

@@ -31,7 +31,7 @@ class Plugin(pm.Plugin):
     def apply_theme(self, subvariant: tc.Subvariant):  # Ran when applying a theme.
         self.purge_theme()
         # If the theme is Adwaita, we don't need to do anything.
-        if subvariant.parent_variant.parent_theme.name.lower() == "adwaita":
+        if subvariant.parent_variant.theme.name.lower() == "adwaita":
             return
 
         # Apply adw-gtk3 to light or dark mode

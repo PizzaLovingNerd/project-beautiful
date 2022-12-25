@@ -16,7 +16,7 @@
       </description>
     </key>
     <key type="as" name="enabled-plugins">
-      <default>["gtk3", "gtk4"]</default>
+      <default>['gtk3', 'gtk4']</default>
       <summary>Enabled plugins</summary>
       <description>
         The list of enabled plugins.
