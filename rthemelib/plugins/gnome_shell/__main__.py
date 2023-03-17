@@ -1,3 +1,4 @@
+import gettext
 import shutil
 from rthemelib.plugins.gnome_shell import constants
 
@@ -67,7 +68,7 @@ class Plugin(pm.Plugin):
 
             # Copying theme-template to directory
             shutil.copytree(
-                f"{DATA_}/gnome43",
+                f"{DATA_}/gnome44",
                 CSS_DIR_, dirs_exist_ok=True
             )
 
