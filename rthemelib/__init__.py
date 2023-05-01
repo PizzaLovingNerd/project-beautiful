@@ -22,6 +22,8 @@ def check_yaml(theme_file: str) -> tuple[bool, str]:
             theme_data = yaml.safe_load(f)
     except yaml.parser.ParserError as e:
         return False, e
+    except FileNotFoundError as e:
+        return False, str(e)
 
     # Check Flags
     if "flags" not in theme_data:
