@@ -87,8 +87,12 @@ class Theme:
     def parse_yaml(self, file_path: str):
         """Parses the theme file."""
         # Load the theme files
-        with open(file_path, "r") as f:
-            self.theme_data = yaml.safe_load(f)
+        try:
+            with open(file_path, "r") as f:
+                self.theme_data = yaml.safe_load(f)
+        except (yaml.parser.ParserError, FileNotFoundError) as e:
+            self.error = repr(e)
+            return
 
         self.theme_file = file_path
 
