@@ -1,10 +1,17 @@
-# Default theme for rtheme and risiOS
+# A recreation of the Adwaita theme for rtheme.
+# If you would like to use this theme, you probably want to disable the gtk3 and gtk4 plugins.
+# This theme is redundant with the gtk3 and gtk4 plugins.
+
+# This theme can also be used as a template for making your own themes based on the Adwaita theme.
+# Colors taken from https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/named-colors.html
+
 flags:
     - light
     - dark
+    - gtk_accent_only
 main:
     light:
-        accent_color: "#ed4a3f"
+        accent_color: "#1c71d8"
         destructive_color: "#d81c1c"
         destructive_bg_color: "#e01b24"
         success_color: "#26a269"
@@ -13,14 +20,14 @@ main:
         warning_bg_color: "#e5a50a"
         error_color: "#c01c28"
         error_bg_color: "#e01b24"
-        window_bg_color: "#f6f5f4"
+        window_bg_color: "#fafafa"
         window_fg_color: "rgba(0, 0, 0, 0.8)"
         view_bg_color: "#ffffff"
         view_fg_color: "rgba(0, 0, 0, 0.8)"
-        headerbar_bg_color: "#d9d9d9"
+        headerbar_bg_color: "#ebebeb"
         headerbar_fg_color: "rgba(0, 0, 0, 0.8)"
         headerbar_border_color: "rgba(0, 0, 0, 0.8)"
-        headerbar_backdrop_color: "#f6f5f4"
+        headerbar_backdrop_color: "#fafafa"
         headerbar_shade_color: "rgba(0, 0, 0, 0.07)"
         card_bg_color: "#ffffff"
         card_fg_color: "rgba(0, 0, 0, 0.8)"
@@ -30,7 +37,7 @@ main:
         shade_color: "rgba(0, 0, 0, 0.07)"
         scrollbar_outline_color: "#ffffff"
     dark:
-        accent_color: "#cb3f40"
+        accent_color: "#78aeed"
         destructive_color: "#ff7b63"
         destructive_bg_color: "#c01c28"
         success_color: "#8ff0a4"
@@ -39,11 +46,11 @@ main:
         warning_bg_color: "#f8e45c"
         error_color: "#ff7b63"
         error_bg_color: "#c01c28"
-        window_bg_color: "#353535"
+        window_bg_color: "#242424"
         window_fg_color: "#ffffff"
-        view_bg_color: "#2d2d2d"
+        view_bg_color: "#1e1e1e"
         view_fg_color: "#ffffff"
-        headerbar_bg_color: "#292929"
+        headerbar_bg_color: "#303030"
         headerbar_fg_color: "#ffffff"
         headerbar_border_color: "#ffffff"
         headerbar_backdrop_color: "#242424"
@@ -56,7 +63,7 @@ main:
         shade_color: "rgba(0, 0, 0, 0.36)"
         scrollbar_outline_color: "rgba(0, 0, 0, 0.5)"
     global:
-        accent_bg_color: "#ff4033"
+        accent_bg_color: "#3584e4"
         accent_fg_color: "#ffffff"
         destructive_fg_color: "#ffffff"
         success_fg_color: "#ffffff"
@@ -67,55 +74,69 @@ main:
                 panel_color: "#292929"
                 custom_css: |
                     #dash .dash-background {
-                        background-color: transparent;}
+                        background-color: #242424;}
                     #overviewGroup {
                         background-color: #292929; }
-blue:
+teal:
     light:
-        accent_color: "#1c71d8"
+        accent_color: "#277779"
+        accent_bg_color: "#277779"
     dark:
-        accent_color: "#3584e4"
-    global:
-        accent_bg_color: "#62a0ea"
+        accent_color: "#6CB3B8"
+        accent_bg_color: "#6CB3B8"
 green:
     light:
         accent_color: "#26a269"
-    dark:
-        accent_color: "#26a269"
-    global:
         accent_bg_color: "#26a269"
+    dark:
+        accent_color: "#2ec27e"
+        accent_bg_color: "#2ec27e"
 yellow:
     light:
-        accent_color: "#e5a50a"
+        accent_color: "#cd9309"
+        accent_bg_color: "#cd9309"
     dark:
         accent_color: "#e5a50a"
-    global:
         accent_bg_color: "#e5a50a"
 orange:
     light:
         accent_color: "#e66100"
+        accent_bg_color: "#e66100"
     dark:
         accent_color: "#ffa348"
-    global:
-        accent_bg_color: "#f8c45c"
+        accent_bg_color: "#ffa348"
 red:
     light:
-        accent_color: "#ed333b"
-    dark:
         accent_color: "#e01b24"
-    global:
+        accent_bg_color: "#e01b24"
+    dark:
+        accent_color: "#c01c28"
         accent_bg_color: "#c01c28"
+pink:
+    light:
+        accent_color: "#D34166"
+        accent_bg_color: "#D34166"
+    dark:
+        accent_color: "#D66FA6"
+        accent_bg_color: "#D66FA6"
 purple:
     light:
-        accent_color: "#c061cb"
-    dark:
         accent_color: "#9141ac"
-    global:
-        accent_bg_color: "#813d9c"
+        accent_bg_color: "#9141ac"
+    dark:
+        accent_color: "#c061cb"
+        accent_bg_color: "#c061cb"
 brown:
     light:
-        accent_color: "#b5835a"
-    dark:
-        accent_color: "#986a44"
-    global:
+        accent_color: "#865e3c"
         accent_bg_color: "#865e3c"
+    dark:
+        accent_color: "#b5835a"
+        accent_bg_color: "#b5835a"
+slate:
+    light:
+        accent_color: "#485a6c"
+        accent_bg_color: "#485a6c"
+    dark:
+        accent_color: "#758a99"
+        accent_bg_color: "#758a99"

@@ -1,18 +1,10 @@
-# A recreation of the Adwaita theme for rtheme.
-# If you would like to use this theme, you probably want to disable the gtk3 and gtk4 plugins.
-# This theme is redundant with the gtk3 and gtk4 plugins.
-
-# This theme can also be used as a template for making your own themes based on the Adwaita theme.
-# Colors taken from https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/named-colors.html
-
+# Default theme for rtheme and risiOS
 flags:
     - light
     - dark
-    - no_gnome_shell
-    - gtk_accent_only
 main:
     light:
-        accent_color: "#1c71d8"
+        accent_color: "#3584e4"
         destructive_color: "#d81c1c"
         destructive_bg_color: "#e01b24"
         success_color: "#26a269"
@@ -21,14 +13,14 @@ main:
         warning_bg_color: "#e5a50a"
         error_color: "#c01c28"
         error_bg_color: "#e01b24"
-        window_bg_color: "#fafafa"
+        window_bg_color: "#f6f5f4"
         window_fg_color: "rgba(0, 0, 0, 0.8)"
         view_bg_color: "#ffffff"
         view_fg_color: "rgba(0, 0, 0, 0.8)"
-        headerbar_bg_color: "#ebebeb"
+        headerbar_bg_color: "#d9d9d9"
         headerbar_fg_color: "rgba(0, 0, 0, 0.8)"
         headerbar_border_color: "rgba(0, 0, 0, 0.8)"
-        headerbar_backdrop_color: "#fafafa"
+        headerbar_backdrop_color: "#f6f5f4"
         headerbar_shade_color: "rgba(0, 0, 0, 0.07)"
         card_bg_color: "#ffffff"
         card_fg_color: "rgba(0, 0, 0, 0.8)"
@@ -38,7 +30,7 @@ main:
         shade_color: "rgba(0, 0, 0, 0.07)"
         scrollbar_outline_color: "#ffffff"
     dark:
-        accent_color: "#78aeed"
+        accent_color: "#3584e4"
         destructive_color: "#ff7b63"
         destructive_bg_color: "#c01c28"
         success_color: "#8ff0a4"
@@ -47,11 +39,11 @@ main:
         warning_bg_color: "#f8e45c"
         error_color: "#ff7b63"
         error_bg_color: "#c01c28"
-        window_bg_color: "#242424"
+        window_bg_color: "#353535"
         window_fg_color: "#ffffff"
-        view_bg_color: "#1e1e1e"
+        view_bg_color: "#2d2d2d"
         view_fg_color: "#ffffff"
-        headerbar_bg_color: "#303030"
+        headerbar_bg_color: "#292929"
         headerbar_fg_color: "#ffffff"
         headerbar_border_color: "#ffffff"
         headerbar_backdrop_color: "#242424"
@@ -64,12 +56,20 @@ main:
         shade_color: "rgba(0, 0, 0, 0.36)"
         scrollbar_outline_color: "rgba(0, 0, 0, 0.5)"
     global:
-        accent_bg_color: "#3584e4"
+        accent_bg_color: "#ff4033"
         accent_fg_color: "#ffffff"
         destructive_fg_color: "#ffffff"
         success_fg_color: "#ffffff"
         warning_fg_color: "rgba(0, 0, 0, 0.8)"
         error_fg_color: "#ffffff"
+        plugin_properties:
+            gnome_shell:
+                panel_color: "#292929"
+                custom_css: |
+                    #dash .dash-background {
+                        background-color: transparent;}
+                    #overviewGroup {
+                        background-color: #292929; }
 teal:
     light:
         accent_color: "#277779"

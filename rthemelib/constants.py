@@ -146,7 +146,7 @@ HELP_PROMPT = """rTheme: The easiest solution for theming on Linux.
 DAEMON COMMANDS:
     rthemed start:              Start rthemed
 We highly recommend using an init system to start rthemed on boot
-instead of using this command.
+instead of using this command. For example "systemctl enable --user themed"
 
 THEME COMMANDS:
     rthemelib list-themes:      List all themes

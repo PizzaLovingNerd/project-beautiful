@@ -24,7 +24,7 @@ if get_option('daemon').enabled()
 endif
 
 gnome.post_install(
-     glib_compile_schemas: true,
+  glib_compile_schemas: true,
   update_desktop_database: true,
 )
 

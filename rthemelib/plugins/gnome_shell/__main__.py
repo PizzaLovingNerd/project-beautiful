@@ -11,22 +11,29 @@ import gi
 gi.require_version("Gdk", "3.0")
 from gi.repository import Gdk
 
+gnome_version = subprocess.run(
+    ["gnome-shell", "--version"], capture_output=True
+).stdout.decode("utf-8").split(" ")[2].split(".")[0]
+
 HOME_ = os.path.expanduser('~')
 CSS_DIR_ = f"{HOME_}/.config/rtheme/shell"
 CSS_FILE_ = f"{CSS_DIR_}/.config/rtheme/shell/shell.css"
 DATA_ = os.path.join(os.path.dirname(__file__), "data")
+
+
 automatic = constants.automatic
 custom_properties = constants.custom_properties
 
 
 class Plugin(pm.Plugin):
+    name = "gnome-shell"
+    description = "A plugin for gnome-shell. Requires sassc and rtheme gnome extension to be enabled."
+    version = "44"
+    author = "PizzaLovingNerd"
+    plugin_properties = list(automatic.keys()) + list(custom_properties.keys())
+
     def __init__(self, plugin_manager: pm.PluginManager):
         super().__init__(plugin_manager)
-        self.name = "gnome-shell"
-        self.description = "A plugin for gnome-shell. Requires sassc and rtheme gnome extension to be enabled."
-        self.version = "43"
-        self.author = "PizzaLovingNerd"
-        self.plugin_properties = list(automatic.keys()) + list(custom_properties.keys())
 
     def on_load(self):  # Runs when the plugin is loaded
         print("GNOME Plugin Loaded")
@@ -66,10 +73,12 @@ class Plugin(pm.Plugin):
                     if light_subvariant.properties[prop] is not None:
                         generated_properties[f"{prop}_light"] = light_subvariant.properties[prop]
 
+            # Check GNOME version
+            css_tree = f"{DATA_}/gnome{gnome_version}"
+
             # Copying theme-template to directory
             shutil.copytree(
-                f"{DATA_}/gnome44",
-                CSS_DIR_, dirs_exist_ok=True
+                css_tree, CSS_DIR_, dirs_exist_ok=True
             )
 
             # Updating icons

@@ -11,48 +11,37 @@ from gi.repository import Gio
 
 SITE_DIRS = site.getsitepackages()
 
-
 class PluginManager:
     def __init__(self):
-        self.plugins = []
+        self.loaded_plugins = []
         settings = Gio.Settings.new("io.risi.rtheme")
         self.enabled_plugins = settings.get_strv("enabled-plugins")
         self.load_plugins()
 
     def load_plugins(self):
-        plugin_dirs = [x for x in SITE_DIRS if (Path(x) / "rthemelib" / "plugins").is_dir()]
-        for directory in plugin_dirs:
-            plugin_path = Path(directory) / "rthemelib" / "plugins"
-            for plugin in plugin_path.glob("*.py"):
-                plugin_name = plugin.stem
-                if plugin_name in self.enabled_plugins:
-                    plugin_module = importlib.import_module(f"rthemelib.plugins.{plugin_name}")
-                    plugin = plugin_module.Plugin(self)
-                    plugin.on_load()
-                    self.plugins.append(plugin)
-            for possible_plugin in plugin_path.iterdir():
-                if (possible_plugin / "__main__.py").is_file():
-                    if possible_plugin.name in self.enabled_plugins:
-                        print(possible_plugin.name, self.enabled_plugins)
-                        plugin_module = importlib.import_module(
-                            f"rthemelib.plugins.{possible_plugin.name}.__main__"
-                        )
-                        plugin = plugin_module.Plugin(self)
-                        plugin.on_load()
-                        self.plugins.append(plugin)
-
-    def get_plugins(self):
-        return self.plugins
+        for plugin_class in get_available_plugins():
+            if plugin_class.name in self.enabled_plugins:
+                plugin = plugin_class(self)
+                plugin.on_load()
+                self.loaded_plugins.append(plugin)
 
 
 class Plugin:
+    name = None
+    description = None
+    version = None
+    author = None
+    plugin_properties = []
+
     def __init__(self, plugin_manager: PluginManager):
-        self.name = ""
-        self.description = ""
-        self.version = ""
-        self.author = ""
-        self.plugin_properties = []
         self.plugin_manager = plugin_manager
+
+        if not self.name:
+            raise ValueError("Plugin name must be set.")
+        if not self.version:
+            raise ValueError("Plugin version must be set.")
+        if not self.author:
+            raise ValueError("Plugin author must be set.")
 
     def on_load(self):
         """Runs when the plugin is loaded."""
@@ -83,9 +72,19 @@ def get_available_plugins():
     plugin_dirs = [x for x in SITE_DIRS if (Path(x) / "rthemelib" / "plugins").is_dir()]
     for directory in plugin_dirs:
         plugin_path = Path(directory) / "rthemelib" / "plugins"
-        for plugin in plugin_path.glob("*.py"):
-            plugin_name = plugin.stem
-            plugins.append(plugin)
+        for possible_plugin in plugin_path.glob("*.py"):
+            try:
+                plugin_module = importlib.import_module(f"rthemelib.plugins.{possible_plugin}")
+                plugins.append(plugin_module.Plugin)
+            except ImportError:
+                pass
         for possible_plugin in plugin_path.iterdir():
             if (possible_plugin / "__main__.py").is_file():
-                plugins.append(possible_plugin.name)
+                try:
+                    plugin_module = importlib.import_module(
+                        f"rthemelib.plugins.{possible_plugin}.__main__"
+                    )
+                    plugins.append(plugin_module.Plugin)
+                except ImportError:
+                    pass
+    return plugins

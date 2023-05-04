@@ -76,7 +76,7 @@ def check_yaml(theme_file: str) -> tuple[bool, str]:
 
 
 def apply_theme(theme: tc.Theme, variant_name: str, subvariant_name: str):
-    for plugin in manager.get_plugins():
+    for plugin in manager.loaded_plugins:
         plugin.apply_theme(theme.get_subvariant_from_name(variant_name, subvariant_name))
 
 
@@ -116,3 +116,9 @@ def get_current_theme_path() -> str:
     return get_file_from_name(
         rtheme_settings.get_string("theme-name")
     )
+
+
+# TEMPORARY, REMOVE IN 2 RELEASES
+# This is to deal with us renaming the preinstalled nord theme to solarized
+if rtheme_settings.get_string("theme-name") == "nord" and "nord" not in get_theme_list():
+    rtheme_settings.set_string("theme-name", "solarized")
