@@ -5,7 +5,7 @@ Summary:        rtheme is a theme manager for the Linux desktop
 
 License:        GPL v3
 URL:            https://github.com/risiIndustries/rtheme
-Source0:        https://github.com/risiIndustries/rtheme/archive/refs/heads/1.0.tar.gz
+Source0:        https://github.com/risiIndustries/rtheme/archive/refs/heads/main.tar.gz
 
 BuildArch:      noarch
 BuildRequires:  python3.11-devel
@@ -67,7 +67,7 @@ Requires: sassc
 Adds support for GNOME Shell
 
 %prep
-%autosetup -n rtheme-1.0
+%autosetup -n rtheme-main
 %build
 %install
 
