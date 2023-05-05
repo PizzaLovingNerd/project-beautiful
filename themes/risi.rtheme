@@ -75,8 +75,6 @@ main:
                 custom_css: |
                     #dash .dash-background {
                         background-color: #242424;}
-                    #overviewGroup {
-                        background-color: #292929; }
 teal:
     light:
         accent_color: "#277779"

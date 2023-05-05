@@ -139,4 +139,4 @@ class Plugin(pm.Plugin):
             if "custom_css" in subvariant.plugin_properties:
                 with open(f"{CSS_DIR_}/rtheme.css", "a") as f:
                     f.write("\n\n" + subvariant.plugin_properties["custom_css"])
-        print("GNOME Shell Theme Applied")
+            print("GNOME Shell Theme Applied")
