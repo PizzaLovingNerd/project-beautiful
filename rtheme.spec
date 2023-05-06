@@ -1,6 +1,6 @@
 Name:           rtheme
 Version:        1.0
-Release:        26%{?dist}
+Release:        27%{?dist}
 Summary:        rtheme is a theme manager for the Linux desktop
 
 License:        GPL v3
@@ -8,9 +8,9 @@ URL:            https://github.com/risiIndustries/rtheme
 Source0:        https://github.com/risiIndustries/rtheme/archive/refs/heads/main.tar.gz
 
 BuildArch:      noarch
-BuildRequires:  python3.11-devel
-BuildRequires:  python3.11-gobject
-BuildRequires:  python3.11-pydbus
+BuildRequires:  python3-devel
+BuildRequires:  python3-gobject
+BuildRequires:  python3-pydbus
 BuildRequires:  meson
 BuildRequires:  desktop-file-utils
 BuildRequires:  systemd-rpm-macros
@@ -41,7 +41,7 @@ Summary:        rtheme gtk3 plugin
 Requires:       python3
 Requires:       python3-gobject
 Requires:       rtheme-lib
-Requires:       adw-gtk-theme
+Requires:       adw-gtk3
 
 %description plugin-gtk3
 rtheme gtk3 plugin
