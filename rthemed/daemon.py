@@ -1,4 +1,5 @@
 import traceback
+import os
 
 import rthemed
 import rthemelib
@@ -11,6 +12,8 @@ gnome_a11y = Gio.Settings.new("org.gnome.desktop.a11y.interface")
 rtheme_settings = Gio.Settings.new("io.risi.rtheme")
 session_bus = SessionBus()
 
+no_notify_users = ["root", "liveuser", "gnome-initial-setup"]
+username = os.getlogin()
 
 class Daemon:
     def __init__(self):
@@ -66,6 +69,8 @@ class DaemonApplication(Gio.Application):
 
 
     def refresh_theme(self, notification: bool = True, *args, **kwargs):
+        if username in no_notify_users:
+            notification = False
         variants_available = [
             x.name for x in rthemelib.get_current_theme().variants
         ]
