@@ -71,7 +71,7 @@ main:
         error_fg_color: "#ffffff"
         plugin_properties:
             gnome_shell:
-                panel_color: "#292929"
+                panel_color: "#303030"
                 custom_css: |
                     #dash .dash-background {
                         background-color: #242424;}

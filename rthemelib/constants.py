@@ -132,7 +132,7 @@ SUB_VARIANTS = [
     "dark-hc"
 ]
 
-FLAGS = [
+DEFAULT_FLAGS = [
     "light",
     "dark",
     "hc"

@@ -11,6 +11,7 @@ from gi.repository import Gio
 
 SITE_DIRS = site.getsitepackages()
 
+
 class PluginManager:
     def __init__(self):
         self.loaded_plugins = []
@@ -32,6 +33,7 @@ class Plugin:
     version = None
     author = None
     plugin_properties = []
+    flags = []
 
     def __init__(self, plugin_manager: PluginManager):
         self.plugin_manager = plugin_manager

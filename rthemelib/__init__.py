@@ -26,9 +26,10 @@ def check_yaml(theme_file: str) -> tuple[bool, str]:
     # Check Flags
     if "flags" not in theme_data:
         return False, "No flags found"
-    for flag in theme_data["flags"]:
-        if flag not in constants.FLAGS:
-            return False, f"Invalid flag: {flag}"
+    # Removed due to plugins having custom flags
+    # for flag in theme_data["flags"]:
+    #     if flag not in constants.DEFAULT_FLAGS:
+    #         return False, f"Invalid flag: {flag}"
     if "light" not in theme_data["flags"] and "dark" not in theme_data["flags"]:
         return False, "No light or dark flag found"
 
