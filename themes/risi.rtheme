@@ -1,10 +1,4 @@
-# A recreation of the Adwaita theme for rtheme.
-# If you would like to use this theme, you probably want to disable the gtk3 and gtk4 plugins.
-# This theme is redundant with the gtk3 and gtk4 plugins.
-
-# This theme can also be used as a template for making your own themes based on the Adwaita theme.
-# Colors taken from https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/named-colors.html
-
+# Default theme in risiOS, basically Adwaita with a custom shell theme
 flags:
     - light
     - dark
@@ -72,9 +66,8 @@ main:
         plugin_properties:
             gnome_shell:
                 panel_color: "#303030"
-                custom_css: |
-                    #dash .dash-background {
-                        background-color: #242424;}
+                overview_color: "#303030"
+                dash_color: "transparent"
 teal:
     light:
         accent_color: "#277779"

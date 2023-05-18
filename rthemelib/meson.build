@@ -3,7 +3,6 @@ sources = [
   '__main__.py',
   'constants.py',
   'plugin_manager.py',
-  'setup.py',
   'theme_classes.py',
 ]
 

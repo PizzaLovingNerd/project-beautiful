@@ -1,5 +1,6 @@
 # This is a port of davidphilipbarr's solarized theme for Libadwaita.
 # Originally contributed to the https://github.com/lassekongo83/adw-colors project.
+# Formally called "Nord".
 
 # Original CSS:
 # https://raw.githubusercontent.com/lassekongo83/adw-colors/main/themes/solarized/gtk.css
@@ -54,3 +55,6 @@ main:
         destructive_bg_color: "#D33682"
         destructive_fg_color: "#eee8d5"
         destructive_color: "#D33682"
+        plugin_properties:
+            gnome_shell:
+                panel_color: "#042229"

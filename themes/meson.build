@@ -4,7 +4,7 @@ moduledir = join_paths(pkgdatadir, 'rthemes')
 themes = [
   'adwaita.rtheme',
   'solarized.rtheme',
-  'class.rtheme'
+  'classic.rtheme',
   'risi.rtheme'
 ]
 

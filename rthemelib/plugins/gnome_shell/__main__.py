@@ -21,12 +21,12 @@ CSS_FILE_ = f"{CSS_DIR_}/.config/rtheme/shell/shell.css"
 DATA_ = os.path.join(os.path.dirname(__file__), "data")
 
 
-automatic = constants.automatic
+automatic = constants.automatic[gnome_version]
 custom_properties = constants.custom_properties
 
 
 class Plugin(pm.Plugin):
-    name = "gnome-shell"
+    name = "gnome_shell"
     description = "A plugin for gnome-shell. Requires sassc and rtheme gnome extension to be enabled."
     version = "44"
     author = "PizzaLovingNerd"
@@ -43,8 +43,9 @@ class Plugin(pm.Plugin):
             shutil.rmtree(CSS_DIR_)
 
     def apply_theme(self, subvariant: tc.Subvariant):  # Ran when applying a gnome43.
+        flags = subvariant.parent_variant.theme.theme_flags
         self.purge_theme()
-        if "no_gnome_shell" not in subvariant.parent_variant.theme.theme_flags:
+        if "no_gnome_shell" not in flags:
             print("Applying GNOME Shell theme...")
             os.makedirs(CSS_DIR_, exist_ok=True)
 
@@ -102,12 +103,14 @@ class Plugin(pm.Plugin):
                         with open(f"{CSS_DIR_}/{icon}", "w") as f:
                             f.write(contents)
 
+            print(generated_properties)
             with open(f"{CSS_DIR_}/gnome-shell-sass/_colors.scss", "r") as f:
                 contents = f.read()
                 for prop in automatic:
-                    if prop in subvariant.plugin_properties:
-                        contents = contents.replace(f"**{prop}**", subvariant.plugin_properties[prop])
-                    elif automatic[prop][0] in generated_properties:
+                    plugin_prop = self.subvariant_has_plugin_property(subvariant, prop)
+                    if plugin_prop:
+                        contents = contents.replace(f"**{prop}**", plugin_prop)
+                    elif automatic[prop][0] in generated_properties and "no_automatic_gnome_shell" not in flags:
                         contents = contents.replace(f"**{prop}**", generated_properties[automatic[prop][0]])
                     else:
                         contents = contents.replace(f"**{prop}**", automatic[prop][1])
@@ -126,17 +129,29 @@ class Plugin(pm.Plugin):
             with open(f"{CSS_DIR_}/rtheme.css", "w") as f:
                 f.write(contents)
 
+            # Setting dash background
+            if "no_automatic_gnome_shell" not in flags and "no_automatic_overview" not in flags \
+                    and not self.subvariant_has_plugin_property(subvariant, "overview_color") \
+                    and "window_bg_color_dark" in generated_properties:
+                with open(f"{CSS_DIR_}/rtheme.css", "a") as f:
+                    f.write(
+                        "\n\n#overviewGroup {\n  background-color: *;\n}".replace(
+                            "*", generated_properties["window_bg_color_dark"]
+                        )
+                    )
+
             # Custom properties
             for prop in custom_properties:
-                if prop in subvariant.plugin_properties:
+                property_css = self.subvariant_has_plugin_property(subvariant, prop)
+                if property_css:
                     with open(f"{CSS_DIR_}/rtheme.css", "a") as f:
                         f.write(
                             "\n\n" + custom_properties[prop].replace(
-                                f"**{prop}**",
-                                subvariant.plugin_properties[prop]
+                                f"**{prop}**", property_css
                             )
                         )
-            if "custom_css" in subvariant.plugin_properties:
+            custom_css = self.subvariant_has_plugin_property(subvariant, "custom_css")
+            if custom_css:
                 with open(f"{CSS_DIR_}/rtheme.css", "a") as f:
-                    f.write("\n\n" + subvariant.plugin_properties["custom_css"])
+                    f.write("\n" + custom_css)
             print("GNOME Shell Theme Applied")

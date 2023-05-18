@@ -17,7 +17,7 @@ rthemelib
 [X] Gtk3 and Gtk4 plugins
 [X] FOR GTK APPS: Get theme list
 [X] Fix variants
-[] GNOME shell plugin
+[X] GNOME shell plugin
 
 rthemed
 [X] Integration with rthemelib
@@ -28,7 +28,7 @@ rthemed
 [] High Contrast theme support
 [X] Theme gsetting integration
 [] Theme debug tool
-[] spec file
+[X] spec file
 
 rthemed help:               Show this help prompt.
 
@@ -58,7 +58,7 @@ rthemegtk
 [] Theme preview with light-dark switch
 
 risi-tweaks
-[] Integration with rthemelib
+[X] Integration with rthemelib
 [] Double click theme file to install it
-[] Select different themes, and variants
+[X] Select different themes, and variants
 [] Theme preview with light-dark switch

@@ -23,3 +23,8 @@ option('plugin_gtk4',
   type: 'feature',
   description: 'Gtk4 plugin for rtheme',
   value: 'enabled')
+
+option('plugin_gnome',
+type: 'feature',
+description: 'GNOME Shell theming support, requires GNOME Shell extension.',
+value: 'enabled')

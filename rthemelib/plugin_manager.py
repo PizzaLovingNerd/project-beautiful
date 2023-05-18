@@ -1,8 +1,11 @@
 import glob
 import importlib
+import os
 import site
 
 from pathlib import Path
+
+import rthemelib.theme_classes
 import rthemelib.theme_classes as tc
 
 import gi
@@ -18,6 +21,9 @@ class PluginManager:
         settings = Gio.Settings.new("io.risi.rtheme")
         self.enabled_plugins = settings.get_strv("enabled-plugins")
         self.load_plugins()
+
+    def get_loaded_plugins(self):
+        return self.loaded_plugins
 
     def load_plugins(self):
         for plugin_class in get_available_plugins():
@@ -63,6 +69,12 @@ class Plugin:
     def apply_theme(self, subvariant: tc.Subvariant):  # Ran when applying a theme.
         pass
 
+    def subvariant_has_plugin_property(self, sv: rthemelib.theme_classes.Subvariant, prop: str):
+        if self.name in sv.plugin_properties:
+            if prop in sv.plugin_properties[self.name]:
+                return sv.plugin_properties[self.name][prop]
+        return None
+
 
 def get_plugins():
     plugin_manager = PluginManager()
@@ -75,18 +87,22 @@ def get_available_plugins():
     for directory in plugin_dirs:
         plugin_path = Path(directory) / "rthemelib" / "plugins"
         for possible_plugin in plugin_path.glob("*.py"):
+            plugin_name = (os.path.basename(possible_plugin).split('/')[-1].split('.')[0])
             try:
-                plugin_module = importlib.import_module(f"rthemelib.plugins.{possible_plugin}")
+                plugin_module = importlib.import_module(f"rthemelib.plugins.{plugin_name}")
                 plugins.append(plugin_module.Plugin)
-            except ImportError:
+            except ImportError as e:
+                print(e)
                 pass
         for possible_plugin in plugin_path.iterdir():
             if (possible_plugin / "__main__.py").is_file():
+                plugin_name = (os.path.basename(possible_plugin).split('/')[-1].split('.')[0])
                 try:
                     plugin_module = importlib.import_module(
-                        f"rthemelib.plugins.{possible_plugin}.__main__"
+                        f"rthemelib.plugins.{plugin_name}.__main__"
                     )
                     plugins.append(plugin_module.Plugin)
-                except ImportError:
+                except ImportError as e:
+                    print(e)
                     pass
     return plugins

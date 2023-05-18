@@ -33,5 +33,6 @@ summary({
   'rthemelib': get_option('library'),
   'rthemed': get_option('daemon'),
   'GTK4 Plugin': get_option('plugin_gtk4'),
-  'GTK3 Plugin': get_option('plugin_gtk3')
+  'GTK3 Plugin': get_option('plugin_gtk3'),
+  'GNOME Shell Plugin': get_option('plugin_gnome')
 })

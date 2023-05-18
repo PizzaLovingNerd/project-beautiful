@@ -1,6 +1,5 @@
 # A recreation of the Adwaita theme for rtheme.
-# If you would like to use this theme, you probably want to disable the gtk3 and gtk4 plugins.
-# This theme is redundant with the gtk3 and gtk4 plugins.
+# Not used by the gtk3 and gtk4 plugins or GNOME, but can be used for other plugins as well as accent colors.
 
 # This theme can also be used as a template for making your own themes based on the Adwaita theme.
 # Colors taken from https://gnome.pages.gitlab.gnome.org/libadwaita/doc/main/named-colors.html
@@ -8,7 +7,7 @@
 flags:
     - light
     - dark
-    - no_gnome_shell
+    - no_automatic_gnome_shell
     - gtk_accent_only
 main:
     light:
@@ -74,62 +73,116 @@ teal:
     light:
         accent_color: "#277779"
         accent_bg_color: "#277779"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#277779"
     dark:
         accent_color: "#6CB3B8"
         accent_bg_color: "#6CB3B8"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#6CB3B8"
 green:
     light:
         accent_color: "#26a269"
         accent_bg_color: "#26a269"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#26a269"
     dark:
         accent_color: "#2ec27e"
         accent_bg_color: "#2ec27e"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#2ec27e"
 yellow:
     light:
         accent_color: "#cd9309"
         accent_bg_color: "#cd9309"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#cd9309"
     dark:
         accent_color: "#e5a50a"
         accent_bg_color: "#e5a50a"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#e5a50a"
 orange:
     light:
         accent_color: "#e66100"
         accent_bg_color: "#e66100"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#e66100"
     dark:
         accent_color: "#ffa348"
         accent_bg_color: "#ffa348"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#ffa348"
 red:
     light:
         accent_color: "#e01b24"
         accent_bg_color: "#e01b24"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#e01b24"
     dark:
         accent_color: "#c01c28"
         accent_bg_color: "#c01c28"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#c01c28"
 pink:
     light:
         accent_color: "#D34166"
         accent_bg_color: "#D34166"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#D34166"
     dark:
         accent_color: "#D66FA6"
         accent_bg_color: "#D66FA6"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#D66FA6"
 purple:
     light:
         accent_color: "#9141ac"
         accent_bg_color: "#9141ac"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#9141ac"
     dark:
         accent_color: "#c061cb"
         accent_bg_color: "#c061cb"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#c061cb"
 brown:
     light:
         accent_color: "#865e3c"
         accent_bg_color: "#865e3c"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#865e3c"
     dark:
         accent_color: "#b5835a"
         accent_bg_color: "#b5835a"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#b5835a"
 slate:
     light:
         accent_color: "#485a6c"
         accent_bg_color: "#485a6c"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#485a6c"
     dark:
         accent_color: "#758a99"
         accent_bg_color: "#758a99"
+        plugin_properties:
+            gnome_shell:
+                selected_bg_color: "#758a99"

@@ -257,8 +257,10 @@ Linux distributions through a GNOME extension.
 This attempts to generate a theme based on the dark subvariant, but will fallback to the light variant if
 there is no dark subvariant. It also uses the light subvariant if you run gnome-classic.
 
-This plugin's only 2 custom plugin properties are:
+This plugin has 4 custom plugin properties:
 * `panel_color`
+* `dash_color`
+* `overview_color`
 * `custom_css`
 
 However, you can also override the properties set by the default properties using the following custom properties.
@@ -326,4 +328,7 @@ However, you can also override the properties set by the default properties usin
 * `active_fg_color_light`
 * `active_fg_color_dark`
 
-You can also disable shell theming by adding the `no_gnome_shell` flag to the theme at the top.
+This theme also has the following flags
+* `no_gnome_shell`: Prevents themes from applying to shell
+* `no_automatic_gnome_shell`: Prevents rTheme from autogenerating a shell theme and only allows manual property setting
+* `no_automatic_overview`: Prevents the overview color from being set automatically.

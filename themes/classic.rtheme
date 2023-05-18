@@ -1,4 +1,4 @@
-# Default theme for rtheme and risiOS
+# GNOME 3.38 Adwaita inspired theme for rtheme
 flags:
     - light
     - dark
@@ -56,7 +56,7 @@ main:
         shade_color: "rgba(0, 0, 0, 0.36)"
         scrollbar_outline_color: "rgba(0, 0, 0, 0.5)"
     global:
-        accent_bg_color: "#ff4033"
+        accent_bg_color: "#3584e4"
         accent_fg_color: "#ffffff"
         destructive_fg_color: "#ffffff"
         success_fg_color: "#ffffff"
@@ -65,9 +65,7 @@ main:
         plugin_properties:
             gnome_shell:
                 dark_base_color: "#353535"
-                custom_css: |
-                    #dash .dash-background {
-                        background-color: #1E181B;}
+                dash_color: "#1E181B"
 teal:
     light:
         accent_color: "#277779"
