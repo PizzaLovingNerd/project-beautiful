@@ -8,7 +8,7 @@ import subprocess
 import os
 import gi
 
-gi.require_version("Gdk", "3.0")
+gi.require_version("Gdk", "4.0")
 from gi.repository import Gdk
 
 gnome_version = subprocess.run(

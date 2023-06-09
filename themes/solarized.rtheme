@@ -58,3 +58,4 @@ main:
         plugin_properties:
             gnome_shell:
                 panel_color: "#042229"
+                dash_color: "#073642"
