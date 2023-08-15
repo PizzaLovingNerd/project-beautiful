@@ -21,7 +21,7 @@ Easily Modify and create themes with a .yml file and some plugins.
 
 %package lib
 Summary:        rtheme library
-Requires:       python3
+Requires:       python
 Requires:       python3-gobject
 %description lib
 rtheme library used for cli and python3
@@ -29,7 +29,7 @@ rtheme library used for cli and python3
 %package d
 Summary:        rtheme daemon
 Requires:       systemd
-Requires:       python3
+Requires:       python
 Requires:       python3-pydbus
 Requires:       python3-gobject
 Requires:       rtheme-lib
@@ -38,7 +38,7 @@ Runs rtheme in the background and updates the theme when needed
 
 %package plugin-gtk3
 Summary:        rtheme gtk3 plugin
-Requires:       python3
+Requires:       python
 Requires:       python3-gobject
 Requires:       rtheme-lib
 Requires:       adw-gtk3
@@ -48,7 +48,7 @@ rtheme gtk3 plugin
 
 %package plugin-gtk4
 Summary:        rtheme gtk4 plugin
-Requires:       python3
+Requires:       python
 Requires:       python3-gobject
 Requires:       rtheme-lib
 
@@ -57,7 +57,7 @@ rtheme gtk4 plugin
 
 %package plugin-gnome-shell
 Summary: Adds gnome shell support
-Requires: python3
+Requires: python
 Requires: python3-gobject
 Requires: rtheme-lib
 Requires: gnome-shell-extension-risi-gnome
